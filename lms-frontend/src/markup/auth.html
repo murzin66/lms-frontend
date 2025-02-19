@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Авторизация</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <!-- Шапка -->
+  <header class="header">
+    <div class="logo">
+      <img src = "./image/logo.svg" height="60px">
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-link" aria-label="Открыть список обучающих курсов">Банк курсов</a>
+      <a href="#" class="nav-link" aria-label="Открыть мои курсы">Мои курсы</a>
+      <a href="#" class="nav-link" aria-label="Просмотреть прогресс">Прогресс</a>
+    </nav>
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Поиск курсов...">
+      <button class="search-button" aria-label="Поиск">Поиск</button>
+    </div>
+
+    <div class="profile">
+      <!-- Для авторизованного пользователя -->
+      <button class="profile-button">
+        <img src = "./image/profile2.svg" height="30px">
+      </button>
+      <!-- Для неавторизованного пользователя -->
+      <!-- <a href="#" class="login-button">Войти</a> -->
+    </div>
+  </header>
+
+  <!-- Основной контент -->
+  <main>
+    <div class="auth-container" id="auth-container">
+      <h1 id="form-title">Авторизация</h1>
+      <form class="auth-form" id="auth-form">
+        <label for="login">Логин</label>
+        <input type="text" id="login" name="login" required>
+
+        <label for="password">Пароль</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit" class="auth-button" aria-label="Войти">Войти</button>
+        <button type="button" class="switch-form" onclick="toggleForm()" aria-label="Зарегистрироваться">Зарегистрироваться</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    function toggleForm() {
+      const formTitle = document.getElementById('form-title');
+      const authForm = document.getElementById('auth-form');
+
+      if (formTitle.textContent === 'Авторизация') {
+        formTitle.textContent = 'Регистрация';
+        authForm.innerHTML = `
+          <label for="surname">Фамилия</label>
+          <input type="text" id="surname" name="surname" required>
+
+          <label for="name">Имя</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="interests">Интересы</label>
+          <textarea id="interests" name="interests" rows="3"></textarea>
+
+          <button type="submit" class="auth-button">Зарегистрироваться</button>
+          <button type="button" class="switch-form" onclick="toggleForm()" aria-label="Уже есть аккаунт? перейти на страницу входа">Уже есть аккаунт? Войти</button>
+        `;
+      } else {
+        formTitle.textContent = 'Авторизация';
+        authForm.innerHTML = `
+          <label for="login">Логин</label>
+          <input type="text" id="login" name="login" required>
+
+          <label for="password">Пароль</label>
+          <input type="password" id="password" name="password" required>
+
+          <button type="submit" class="auth-button">Войти</button>
+          <button type="button" class="switch-form" onclick="toggleForm()" aria-label="Зарегистрироваться">Зарегистрироваться</button>
+        `;
+      }
+    }
+  </script>
+<!-- Футер -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 Система управления обучением. Все права защищены.</p>
+    <nav class="footer-nav">
+      <a href="#" class="footer-link" aria-label="Перейти на вкладку о нас">О нас</a>
+      <a href="#" class="footer-link" aria-label="Перейти на вкладку контакты">Контакты</a>
+      <a href="#" class="footer-link" aria-label="Политика конфиденциальности">Политика конфиденциальности</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

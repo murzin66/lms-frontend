@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Профиль</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Шапка -->
+  <header class="header">
+    <div class="logo">
+      <img src = "./image/logo.svg" height="60px">
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-link" aria-label="Открыть список обучающих курсов">Банк курсов</a>
+      <a href="#" class="nav-link" aria-label="Открыть мои курсы">Мои курсы</a>
+      <a href="#" class="nav-link" aria-label="Просмотреть прогресс">Прогресс</a>
+    </nav>
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Поиск курсов...">
+      <button class="search-button" aria-label="Поиск">Поиск</button>
+    </div>
+
+    <div class="profile">
+      <!-- Для авторизованного пользователя -->
+      <button class="profile-button">
+        <img src = "./image/profile2.svg" height="30px">
+      </button>
+      <!-- Для неавторизованного пользователя -->
+      <!-- <a href="#" class="login-button">Войти</a> -->
+    </div>
+  </header>
+  <main class="profile-info">
+    <h1 style="text-align: center;">Профиль пользователя</h1>
+    <div class="profile-card">
+      <img src="./image/profile-photo.jpg" alt="Фото профиля" class="profile-photo">
+      <form class="profile-form">
+        <label for="surname">Фамилия</label>
+        <input type="text" id="surname" name="surname" value="Иванов" required>
+
+        <label for="name">Имя</label>
+        <input type="text" id="name" name="name" value="Иван" required>
+
+        <label for="middlename">Отчество</label>
+        <input type="text" id="middlename" name="middlename" value="Иванович">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="example@mail.com" required>
+
+        <label for="interests">Интересы</label>
+        <textarea id="interests" name="interests">Программирование, Машинное обучение</textarea>
+
+        <button type="submit" class="save-button" aria-label="Сохранить изменения">Сохранить изменения</button>
+      </form>
+    </div>
+  </main>
+<!-- Футер -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 Система управления обучением. Все права защищены.</p>
+    <nav class="footer-nav">
+      <a href="#" class="footer-link" aria-label="Перейти на вкладку о нас">О нас</a>
+      <a href="#" class="footer-link" aria-label="Перейти на вкладку контакты">Контакты</a>
+      <a href="#" class="footer-link" aria-label="Политика конфиденциальности">Политика конфиденциальности</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

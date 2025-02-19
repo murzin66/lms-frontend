@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Курс</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Шапка -->
+  <header class="header">
+    <div class="logo">
+      <img src = "./image/logo.svg" height="60px">
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-link" aria-label="Открыть список обучающих курсов">Банк курсов</a>
+      <a href="#" class="nav-link" aria-label="Открыть мои курсы">Мои курсы</a>
+      <a href="#" class="nav-link" aria-label="Просмотреть прогресс">Прогресс</a>
+    </nav>
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Поиск курсов...">
+      <button class="search-button" aria-label="Поиск">Поиск</button>
+    </div>
+
+    <div class="profile">
+      <!-- Для авторизованного пользователя -->
+      <button class="profile-button">
+        <img src = "./image/profile2.svg" height="30px">
+      </button>
+      <!-- Для неавторизованного пользователя -->
+      <!-- <a href="#" class="login-button">Войти</a> -->
+    </div>
+  </header>
+
+  <!-- Основной контент -->
+  <main class="main">
+    <div class="course-container2">
+      <!-- Основной контент -->
+      <div class="course-content">
+          <h1>Основы Python</h1>
+
+          <div class="course-section">
+              <h2>Раздел 1: Введение в Python</h2>
+              <ul class="course-materials-list">
+                  <li><a href="python_intro.pdf" class="course-download-link">Скачать материалы лекции "Введение в Python"</a></li>
+              </ul>
+              <div class="course-video-container">
+                  <iframe src="https://www.youtube.com/embed/_uQrJ0TkZlc" allowfullscreen></iframe>
+              </div>
+          </div>
+
+          <div class="course-section">
+              <h2>Раздел 2: Основные конструкции</h2>
+              <ul class="course-materials-list">
+                  <li><a href="python_basics.pdf" class="course-download-link">Скачать материалы лекции "Основы синтаксиса"</a></li>
+              </ul>
+              <div class="course-video-container">
+                  <iframe src="https://www.youtube.com/embed/rfscVS0vtbw" allowfullscreen></iframe>
+              </div>
+          </div>
+
+          <div class="course-section">
+              <h2>Раздел 3: Работа со списками и словарями</h2>
+              <ul class="course-materials-list">
+                  <li><a href="lists_dicts.pdf" class="course-download-link">Скачать материалы лекции "Списки и словари"</a></li>
+              </ul>
+              <div class="course-video-container">
+                  <iframe src="https://www.youtube.com/embed/N4mEzFDjqtA" allowfullscreen></iframe>
+              </div>
+          </div>
+
+          <div class="course-section">
+              <h2>Раздел 4: Объектно-ориентированное программирование</h2>
+              <ul class="course-materials-list">
+                  <li><a href="oop_python.pdf" class="course-download-link">Скачать материалы лекции "Объектно-ориентированное программирование"</a></li>
+              </ul>
+              <div class="course-video-container">
+                  <iframe src="https://www.youtube.com/embed/MOaZrj96RjM" allowfullscreen></iframe>
+              </div>
+          </div>
+      </div>
+
+      <!-- Боковая колонка с рекомендациями -->
+      <aside class="course-sidebar">
+          <h2>Рекомендуемые курсы</h2>
+
+          <div class="course-recommended-course">
+              <img src="./image/NN.png" alt="Машинное обучение">
+              <h3>Машинное обучение</h3>
+              <p>Изучите основы машинного обучения, работу с нейросетями и анализ данных.</p>
+              <a href="#">Подробнее</a>
+          </div>
+
+          <div class="course-recommended-course">
+              <img src="./image/Web.svg" alt="Веб-разработка">
+              <h3>Веб-разработка</h3>
+              <p>Научитесь создавать современные веб-приложения с HTML, CSS и JavaScript.</p>
+              <a href="#">Подробнее</a>
+          </div>
+
+          <div class="course-recommended-course">
+              <img src="./image/ML.png" alt="Анализ данных">
+              <h3>Анализ данных</h3>
+              <p>Освойте основы анализа данных с помощью Python и Pandas.</p>
+              <a href="#">Подробнее</a>
+          </div>
+      </aside>
+  </div>
+</main>
+
+<!-- Футер -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 Система управления обучением. Все права защищены.</p>
+    <nav class="footer-nav">
+      <a href="#" class="footer-link" aria-label="Перейти на вкладку о нас">О нас</a>
+      <a href="#" class="footer-link" aria-label="Перейти на вкладку контакты">Контакты</a>
+      <a href="#" class="footer-link" aria-label="Политика конфиденциальности">Политика конфиденциальности</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Банк курсов</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Шапка -->
+  <header class="header">
+    <div class="logo">
+      <img src = "./image/logo.svg" height="60px">
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-link" aria-label="Открыть список обучающих курсов">Банк курсов</a>
+      <a href="#" class="nav-link" aria-label="Открыть мои курсы">Мои курсы</a>
+      <a href="#" class="nav-link" aria-label="Просмотреть прогресс">Прогресс</a>
+    </nav>
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Поиск курсов...">
+      <button class="search-button" aria-label="Поиск">Поиск</button>
+    </div>
+
+    <div class="profile">
+      <!-- Для авторизованного пользователя -->
+      <button class="profile-button">
+        <img src = "./image/profile2.svg" height="30px">
+      </button>
+      <!-- Для неавторизованного пользователя -->
+      <!-- <a href="#" class="login-button">Войти</a> -->
+    </div>
+  </header>
+
+  <!-- Основной контент -->
+  <main class="main">
+    <h1 class="main-title">Банк курсов</h1>
+    <div class="course-cards">
+      <!-- Карточка курса 1 -->
+      <div class="course-card">
+        <h2 class="course-title">Основы Python</h2>
+        <p class="course-description">Изучите основы программирования на Python.</p>
+        <div class="course-meta">
+          <span class="course-hours">Трудоемкость: 20 часов</span>
+          <span class="course-difficulty">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9734;</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Карточка курса 2 -->
+      <div class="course-card">
+        <h2 class="course-title">Машинное обучение</h2>
+        <p class="course-description">Погрузитесь в мир машинного обучения и нейронных сетей.</p>
+        <div class="course-meta">
+          <span class="course-hours">Трудоемкость: 40 часов</span>
+          <span class="course-difficulty">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Карточка курса 3 -->
+      <div class="course-card">
+        <h2 class="course-title">Веб-разработка</h2>
+        <p class="course-description">Создавайте современные веб-приложения с использованием React и Django.</p>
+        <div class="course-meta">
+          <span class="course-hours">Трудоемкость: 30 часов</span>
+          <span class="course-difficulty">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9734;</span>
+            <span class="star">&#9734;</span>
+          </span>
+        </div>
+      </div>
+    <!-- Карточка курса 4 -->
+    <div class="course-card">
+      <h2 class="course-title">Базы данных</h2>
+      <p class="course-description">Изучите основы работы с реляционными и NoSQL базами данных.</p>
+      <div class="course-meta">
+        <span class="course-hours">Трудоемкость: 25 часов</span>
+        <span class="course-difficulty">
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9734;</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Карточка курса 5 -->
+    <div class="course-card">
+      <h2 class="course-title">DevOps</h2>
+      <p class="course-description">Освойте инструменты для автоматизации разработки и развертывания.</p>
+      <div class="course-meta">
+        <span class="course-hours">Трудоемкость: 35 часов</span>
+        <span class="course-difficulty">
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Карточка курса 6 -->
+    <div class="course-card">
+      <h2 class="course-title">Алгоритмы и структуры данных</h2>
+      <p class="course-description">Изучите основные алгоритмы и структуры данных для эффективного программирования.</p>
+      <div class="course-meta">
+        <span class="course-hours">Трудоемкость: 50 часов</span>
+        <span class="course-difficulty">
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Футер -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 Система управления обучением. Все права защищены.</p>
+    <nav class="footer-nav">
+      <a href="#" class="footer-link" aria-label="Перейти на вкладку о нас">О нас</a>
+      <a href="#" class="footer-link" aria-label="Перейти на вкладку контакты">Контакты</a>
+      <a href="#" class="footer-link" aria-label="Политика конфиденциальности">Политика конфиденциальности</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

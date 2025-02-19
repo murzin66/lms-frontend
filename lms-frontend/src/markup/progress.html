@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Прогресс</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Шапка -->
+  <header class="header">
+    <div class="logo">
+      <img src = "./image/logo.svg" height="60px">
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-link" aria-label="Открыть список обучающих курсов">Банк курсов</a>
+      <a href="#" class="nav-link" aria-label="Открыть мои курсы">Мои курсы</a>
+      <a href="#" class="nav-link" aria-label="Просмотреть прогресс">Прогресс</a>
+    </nav>
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Поиск курсов...">
+      <button class="search-button" aria-label="Поиск">Поиск</button>
+    </div>
+
+    <div class="profile">
+      <!-- Для авторизованного пользователя -->
+      <button class="profile-button">
+        <img src = "./image/profile2.svg" height="30px">
+      </button>
+      <!-- Для неавторизованного пользователя -->
+      <!-- <a href="#" class="login-button">Войти</a> -->
+    </div>
+  </header>
+
+  <!-- Основной контент -->
+  <main>
+    <div class="progress-container">
+      <h1>Прогресс обучения</h1>
+      <label for="course-select">Выберите курс:</label>
+      <select id="course-select" class="progress-select" onchange="updateProgress()">
+        <option value="python">Основы Python</option>
+        <option value="ml">Машинное обучение</option>
+        <option value="web">Веб-разработка</option>
+      </select>
+
+      <div class="chart-container">
+        <canvas id="progressChart"></canvas>
+      </div>
+
+      <p id="progress-text">Прогресс курса: 0%</p>
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill" style="width: 0%;">0%</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const progressData = {
+      python: [80, 60, 90, 40],
+      ml: [50, 30, 70, 20],
+      web: [90, 70, 80, 60]
+    };
+
+    let progressChart;
+
+    function createChart() {
+      const ctx = document.getElementById('progressChart').getContext('2d');
+      progressChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Модуль 1', 'Модуль 2', 'Модуль 3', 'Модуль 4'],
+          datasets: [{
+            label: 'Прогресс (%)',
+            data: progressData['python'],
+            backgroundColor: '#6200ea'
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100
+            }
+          }
+        }
+      });
+    }
+
+    window.onload = function() {
+      createChart();
+      updateProgress();
+    };
+
+    function updateProgress() {
+      const selectedCourse = document.getElementById('course-select').value;
+      progressChart.data.datasets[0].data = progressData[selectedCourse];
+      progressChart.update();
+
+      let totalProgress = progressData[selectedCourse].reduce((a, b) => a + b, 0) / progressData[selectedCourse].length;
+      document.getElementById('progress-text').textContent = `Прогресс курса: ${totalProgress}%`;
+      document.getElementById('progress-fill').style.width = `${totalProgress}%`;
+      document.getElementById('progress-fill').textContent = `${totalProgress}%`;
+    }
+  </script>
+
+<!-- Футер -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 Система управления обучением. Все права защищены.</p>
+    <nav class="footer-nav">
+      <a href="#" class="footer-link" aria-label="Перейти на вкладку о нас">О нас</a>
+      <a href="#" class="footer-link" aria-label="Перейти на вкладку контакты">Контакты</a>
+      <a href="#" class="footer-link" aria-label="Политика конфиденциальности">Политика конфиденциальности</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
