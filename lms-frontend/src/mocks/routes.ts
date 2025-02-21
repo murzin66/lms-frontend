@@ -4,4 +4,12 @@ export enum AppRoute {
   Progress = '/progress',
   Login = '/login',
   Search = '/search',
+  Profile = '/profile',
+  Register = '/register'
+}
+
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
 }
