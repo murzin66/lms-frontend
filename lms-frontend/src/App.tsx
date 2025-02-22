@@ -13,6 +13,7 @@ import LoginPage from './components/Login-page/LoginPage';
 import Register from './components/Register/Register';
 import MockCources from './mocks/couses';
 import { MockProgress } from './mocks/couses';
+import MockProfile from './mocks/profile';
 function App() {
   return (
     <Routes>
@@ -36,8 +37,8 @@ function App() {
       <Route
       path = {AppRoute.Profile}
       element = {
-        <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-          <ProfilePage/>
+        <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+          <ProfilePage {...MockProfile}/>
         </PrivateRoute>
       }/>
 
