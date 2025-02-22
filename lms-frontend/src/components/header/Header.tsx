@@ -15,11 +15,11 @@ function Header(){
   return(
     <header className="header">
     <div className="logo">
-      <img src = {logo} height="60px"/>
+      <Link to ="/"><img src = {logo} alt = "логотип" height="60px"/></Link>
     </div>
     <nav className="nav">
       <Link to = "/" className="nav-link" aria-label="Открыть список обучающих курсов">Банк курсов</Link>
-      <Link to ="/" className="nav-link" aria-label="Открыть мои курсы">Мои курсы</Link>
+      <Link to ="/mycourses" className="nav-link" aria-label="Открыть мои курсы">Мои курсы</Link>
       <Link to = "/progress" className="nav-link" aria-label="Просмотреть прогресс">Прогресс</Link>
     </nav>
     <div className="search-container">
@@ -29,7 +29,7 @@ function Header(){
 
     <div className="profile">
       <button className="profile-button" onClick={profileButtonHandler}>
-        <img src = {profile} height="30px"/>
+        <img src = {profile} alt ="перейти в фото профиля" height="30px"/>
       </button>
     </div>
   </header>

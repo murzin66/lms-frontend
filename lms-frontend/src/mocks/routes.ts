@@ -5,7 +5,8 @@ export enum AppRoute {
   Login = '/login',
   Search = '/search',
   Profile = '/profile',
-  Register = '/register'
+  Register = '/register',
+  MyCourses = '/mycourses'
 }
 
 export enum AuthorizationStatus {
