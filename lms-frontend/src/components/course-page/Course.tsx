@@ -13,7 +13,7 @@ function Course({isAuth, isEnrolled} : CourseProps){
   return(
     <>
       <Header/>
-        {!(isAuth && isEnrolled) ?
+        {(isAuth && isEnrolled) ?
 
         <main className="main">
         <div className="course-container2">

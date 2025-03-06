@@ -15,4 +15,4 @@ export const courseListProcess = createSlice({
         },
     },
 });
-export const {courseListAction} = courseListProcess.actions;
+export const {changeCourseListAction} = courseListProcess.actions;

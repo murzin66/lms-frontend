@@ -9,7 +9,7 @@ import Course from './components/course-page/Course';
 import Progress from './components/progress/Progress';
 import ProfilePage from './components/profile-page/ProfilePage';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import LoginPage from './components/Login-page/LoginPage';
+import LoginPage from './components/login-page/LoginPage';
 import Register from './components/Register/Register';
 import MockCources from './mocks/couses';
 import { MockProgress } from './mocks/couses';
@@ -32,13 +32,16 @@ function App() {
 
       <Route
       path = {AppRoute.Progress}
-      element = {<Progress courses={MockProgress}/>}/>
+      element = {
+        <PrivateRoute authorizationStatus = {AuthorizationStatus.Auth}>
+      <Progress courses={MockProgress}/>
+      </PrivateRoute>}/>
 
       <Route
       path = {AppRoute.Profile}
       element = {
-        <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-          <ProfilePage {...MockProfile}/>
+        <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+          <ProfilePage />
         </PrivateRoute>
       }/>
 
@@ -63,11 +66,7 @@ function App() {
         <Register/>
       }/>
 
-      <Route
-      path = {AppRoute.Course}
-      element = {
-        <Course isAuth={false} isEnrolled={false}/>
-      }/>
+
     </Routes>
   );
 }

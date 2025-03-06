@@ -20,8 +20,14 @@ function Register () {
           <label htmlFor="name">Имя</label>
           <input type="text" id="name" name="name" required/>
 
+          <label htmlFor="middlename">Отчество</label>
+          <input type="text" id="middlename" name="middlename" required/>
+
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email" required/>
+
+          <label htmlFor="password">Пароль</label>
+          <input type="password" id="password" name="password" required/>
 
           <label htmlFor="interests">Интересы</label>
           <textarea id="interests" name="interests" rows={3}></textarea>
