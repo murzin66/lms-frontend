@@ -5,6 +5,7 @@ export type CourseShortInfo = {
     description: string;
     rating: number;
     difficulty: number;
+    id:number;
 }
 
 export type Course = {

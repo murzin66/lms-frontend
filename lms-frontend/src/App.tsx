@@ -14,7 +14,21 @@ import Register from './components/Register/Register';
 import MockCources from './mocks/couses';
 import { MockProgress } from './mocks/couses';
 import MockProfile from './mocks/profile';
+import { useAppDispatch, useAppSelector } from './hooks';
+import { fetchCourseList } from './store/api-actions';
+import { getCourseList } from './store/selectors';
+import { useEffect } from 'react';
+
 function App() {
+/*  const dispatch = useAppDispatch();
+  dispatch(fetchCourseList());
+
+  useEffect(() => {
+    console.log("dispatch CourseList action");
+    dispatch(fetchCourseList());
+  }, [dispatch]);
+*/
+  const courseTitle = useAppSelector(getCourseList);
   return (
     <Routes>
       <Route

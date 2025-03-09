@@ -13,8 +13,8 @@ function MainPage({Cources} : CourceCardProps){
         <main className="main">
             <h1 className="main-title">Банк курсов</h1>
             <div className="course-cards">
-              {Cources.map((cource) => (
-              <CourseCard title={cource.title} stars={cource.stars} id = {cource.stars} description={cource.description} difficulty={cource.difficulty}/>
+              {Cources.map((course) => (
+              <CourseCard key = {course.id} title={course.title} stars={course.stars} id = {course.stars} description={course.description} difficulty={course.difficulty}/>
               ))}
           </div>
         </main>

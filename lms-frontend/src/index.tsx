@@ -5,9 +5,12 @@ import './index.css';
 import App from './App';
 import { store } from './store/index';
 import { Provider } from 'react-redux';
+import { fetchCourseList } from './store/api-actions';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+store.dispatch(fetchCourseList());
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
