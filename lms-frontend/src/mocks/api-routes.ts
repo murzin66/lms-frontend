@@ -1,7 +1,8 @@
 export enum APIRoute {
   CourseList = '/',
-  Course = '/course/{offerId}',
-  UserInfo = '/user',
+  Course = '/course',
+  UserInfo = '/user/{userId}',
+  Progress = '/progress/{userId}',
   Login = '/login',
   Logout = '/logout'
 }

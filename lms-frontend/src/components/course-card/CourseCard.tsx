@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../hooks";
+import { fetchCourseInfo } from "../../store/api-actions";
 
 type CourseCardProps = {
   title: string;
@@ -10,8 +12,9 @@ type CourseCardProps = {
 
 function CourseCard({ title, description, stars, difficulty, id }: CourseCardProps) {
   const navigate = useNavigate();
-
-  const navigateToCource = (event: React.MouseEvent<HTMLElement>) => {
+  const dispatch = useAppDispatch();
+  const navigateToCourse = (event: React.MouseEvent<HTMLElement>) => {
+    dispatch(fetchCourseInfo(1));
     navigate(`/Course/${id}`);
   };
 
@@ -34,7 +37,7 @@ function CourseCard({ title, description, stars, difficulty, id }: CourseCardPro
 
   return (
     <div className="course-card">
-      <h2 className="course-title" onClick={navigateToCource}>{title}</h2>
+      <h2 className="course-title" onClick={navigateToCourse}>{title}</h2>
       <p className="course-description">{description}</p>
       <div className="course-meta">
         <span className="course-hours">Трудоемкость: {difficulty} часов</span>

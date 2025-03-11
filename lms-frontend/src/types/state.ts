@@ -8,10 +8,12 @@ export type CourseShortInfo = {
     id:number;
 }
 
-export type Course = {
+export type CourseType = {
+    courseName:string;
     descriptionList: string[],
     documentList: string [],
     videoList: string [],
+    courseId:number
 }
 
 export type User = {

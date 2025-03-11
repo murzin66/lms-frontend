@@ -1,7 +1,7 @@
 import { AxiosInstance } from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { saveToken, dropToken, getToken } from "../services/token";
-import { AppDispatch, Course, CourseList, State, User } from "../types/state";
+import { AppDispatch, CourseType, CourseList, State, User } from "../types/state";
 import { APIRoute } from "../mocks/api-routes";
 import { AuthData } from "../types/auth-data";
 import { UserData } from "../types/user-data";
@@ -13,9 +13,7 @@ export const fetchCourseList = createAsyncThunk<CourseList, undefined, {
 }>(
   'CourseList/fetchCourseList',
   async (_arg, {extra: api}) => {
-    console.log("started request");
     const {data} = await api.get<CourseList>(APIRoute.CourseList);
-    console.log(data);
     return data;
   },
 );
@@ -47,14 +45,16 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   },
 );
 
-export const fetchCourseInfo = createAsyncThunk<Course, undefined, {
+export const fetchCourseInfo = createAsyncThunk<CourseType, number, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'Course/fetchCourse',
-  async (_arg, {extra: api}) => {
-    const {data} = await api.get<Course>(APIRoute.CourseList);
+  async (id, {extra: api}) => {
+    console.log("fetch course");
+    const {data} = await api.get<CourseType>(`${APIRoute.Course}/${id}`);
+    console.log(data);
     return data;
   },
 );

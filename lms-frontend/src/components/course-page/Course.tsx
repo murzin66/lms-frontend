@@ -4,12 +4,15 @@ import MLPhoto from "../../markup/image/ML.png";
 import NNPhoto from "../../markup/image/NN.png";
 import WebPhoto from "../../markup/image/Web.svg";
 import PythonPhoto from "../../markup/image/Python-logo.png";
+import  {CourseType}  from "../../types/state";
+import CourseModule from "../course-modules/course-modules";
 
 type CourseProps={
   isAuth : boolean;
   isEnrolled:boolean;
+  courseInfo:CourseType;
 };
-function Course({isAuth, isEnrolled} : CourseProps){
+function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
   return(
     <>
       <Header/>
@@ -18,49 +21,21 @@ function Course({isAuth, isEnrolled} : CourseProps){
         <main className="main">
         <div className="course-container2">
 
-      <div className="course-content">
-          <h1>Основы Python</h1>
+          <div className="course-content">
+            <h1>{courseInfo.courseName}</h1>
+              {
 
-          <div className="course-section">
-              <h2>Раздел 1: Введение в Python</h2>
-              <ul className="course-materials-list">
-                  <li><a href="python_intro.pdf" className="course-download-link">Скачать материалы лекции "Введение в Python"</a></li>
-              </ul>
-              <div className="course-video-container">
-                  <iframe src="https://www.youtube.com/embed/_uQrJ0TkZlc" allowFullScreen></iframe>
-              </div>
+                courseInfo.descriptionList.map((elem, index) => (
+                  <CourseModule
+                    key={index}
+                    title={elem}
+                    videoUrl={courseInfo.videoList[index]}
+                    documentUrl={courseInfo.documentList[index]}
+                  />
+                ))
+              }
           </div>
 
-          <div className="course-section">
-              <h2>Раздел 2: Основные конструкции</h2>
-              <ul className="course-materials-list">
-                  <li><a href="python_basics.pdf" className="course-download-link">Скачать материалы лекции "Основы синтаксиса"</a></li>
-              </ul>
-              <div className="course-video-container">
-                  <iframe src="https://www.youtube.com/embed/rfscVS0vtbw" allowFullScreen></iframe>
-              </div>
-          </div>
-
-          <div className="course-section">
-              <h2>Раздел 3: Работа со списками и словарями</h2>
-              <ul className="course-materials-list">
-                  <li><a href="lists_dicts.pdf" className="course-download-link">Скачать материалы лекции "Списки и словари"</a></li>
-              </ul>
-              <div className="course-video-container">
-                  <iframe src="https://www.youtube.com/embed/N4mEzFDjqtA" allowFullScreen></iframe>
-              </div>
-          </div>
-
-          <div className="course-section">
-              <h2>Раздел 4: Объектно-ориентированное программирование</h2>
-              <ul className="course-materials-list">
-                  <li><a href="oop_python.pdf" className="course-download-link">Скачать материалы лекции "Объектно-ориентированное программирование"</a></li>
-              </ul>
-              <div className="course-video-container">
-                  <iframe src="https://www.youtube.com/embed/MOaZrj96RjM" allowFullScreen></iframe>
-              </div>
-          </div>
-      </div>
 
 
       <aside className="course-sidebar">

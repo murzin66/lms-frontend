@@ -1,10 +1,10 @@
 import Header from "../header/Header";
 import Footer from "../footer/footer";
 import CourseCard from "../course-card/CourseCard";
-import { Cource } from "../../mocks/couses";
+import { CourseShortInfo } from "../../types/state";
 
 type CourceCardProps = {
-  Cources:Cource[];
+  Cources:CourseShortInfo[];
 }
 function MainPage({Cources} : CourceCardProps){
   return(
@@ -14,7 +14,7 @@ function MainPage({Cources} : CourceCardProps){
             <h1 className="main-title">Банк курсов</h1>
             <div className="course-cards">
               {Cources.map((course) => (
-              <CourseCard key = {course.id} title={course.title} stars={course.stars} id = {course.stars} description={course.description} difficulty={course.difficulty}/>
+              <CourseCard key = {course.id} title={course.title} stars={course.rating} id = {course.id} description={course.description} difficulty={course.difficulty}/>
               ))}
           </div>
         </main>

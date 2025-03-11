@@ -16,24 +16,20 @@ import { MockProgress } from './mocks/couses';
 import MockProfile from './mocks/profile';
 import { useAppDispatch, useAppSelector } from './hooks';
 import { fetchCourseList } from './store/api-actions';
-import { getCourseList } from './store/selectors';
+import { getCourse, getCourseList } from './store/selectors';
 import { useEffect } from 'react';
+import NotFoundPage from './components/not-found-page/not-found-page';
+import LoadingPage from './components/loading-page/loading-page';
 
 function App() {
-/*  const dispatch = useAppDispatch();
-  dispatch(fetchCourseList());
 
-  useEffect(() => {
-    console.log("dispatch CourseList action");
-    dispatch(fetchCourseList());
-  }, [dispatch]);
-*/
-  const courseTitle = useAppSelector(getCourseList);
+  const courseList = useAppSelector(getCourseList);
+  const course = useAppSelector(getCourse);
   return (
     <Routes>
       <Route
       path={AppRoute.Main}
-      element = {<MainPage Cources={MockCources}/>}/>
+      element = {<MainPage Cources={courseList}/>}/>
 
       <Route
       path={AppRoute.Search}
@@ -42,7 +38,7 @@ function App() {
 
       <Route
       path={AppRoute.Course}
-      element = {<Course isAuth = {true} isEnrolled = {true}/>}/>
+      element = {<Course courseInfo = {course} isAuth = {true} isEnrolled = {true}/>}/>
 
       <Route
       path = {AppRoute.Progress}
@@ -63,7 +59,7 @@ function App() {
       path = {AppRoute.MyCourses}
       element = {
         <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-          <MainPage Cources={MockCources.slice(0,3)}/>
+          <MainPage Cources={courseList.slice(0,3)}/>
         </PrivateRoute>
       }
       />
@@ -80,7 +76,12 @@ function App() {
         <Register/>
       }/>
 
-
+      <Route
+      path='*'
+      element = {
+        <NotFoundPage/>
+      }
+        />
     </Routes>
   );
 }
