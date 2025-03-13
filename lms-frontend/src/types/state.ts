@@ -13,10 +13,12 @@ export type CourseType = {
     descriptionList: string[],
     documentList: string [],
     videoList: string [],
-    courseId:number
+    courseId:number,
+    isCourseDataLoading: boolean,
 }
 
 export type User = {
+    userId: number;
     isAuth : boolean,
     name : string,
     surname: string,
@@ -24,9 +26,17 @@ export type User = {
     interests: string,
     email: string,
     photoUrl: string,
+    progress: CourseProgress[],
+    isUserDataLoading:boolean,
+}
+
+export type CourseProgress = {
+    CourseName: string,
+    moduleProgress: number[];
 }
 export type CourseList = {
     courseList: CourseShortInfo[];
+    isCourseListDataLoading : boolean;
 };
 
 export type State = ReturnType<typeof store.getState>;

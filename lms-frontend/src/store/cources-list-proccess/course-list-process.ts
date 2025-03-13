@@ -5,6 +5,7 @@ import { fetchCourseList } from "../api-actions";
 
 const initialState: CourseList = {
     courseList:[],
+    isCourseListDataLoading:false,
 };
 
 export const courseListProcess = createSlice({
@@ -14,9 +15,14 @@ export const courseListProcess = createSlice({
     extraReducers (builder){
         builder
         .addCase(fetchCourseList.fulfilled, (state, action) => {
+            state.isCourseListDataLoading = false;
             state.courseList = action.payload.courseList;
         })
+        .addCase(fetchCourseList.pending, (state) => {
+            state.isCourseListDataLoading = true;
+        })
         .addCase(fetchCourseList.rejected, (state) => {
+            state.isCourseListDataLoading = false;
             state.courseList = [];
         })
     },

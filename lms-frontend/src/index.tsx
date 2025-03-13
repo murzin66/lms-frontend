@@ -5,11 +5,13 @@ import './index.css';
 import App from './App';
 import { store } from './store/index';
 import { Provider } from 'react-redux';
-import { fetchCourseList } from './store/api-actions';
+import { fetchCourseList, getUserInfo, getUserProgress } from './store/api-actions';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 store.dispatch(fetchCourseList());
+store.dispatch(getUserProgress(1));
+store.dispatch(getUserInfo("test@mail.ru"));
 
 root.render(
   <React.StrictMode>

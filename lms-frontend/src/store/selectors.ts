@@ -1,7 +1,7 @@
 import { State, store } from "./index";
 import { AuthorizationStatus } from "../mocks/routes";
 import { SliceHeadersNamespace } from "../mocks/sliceHeaders";
-import { CourseShortInfo, CourseType } from "../types/state";
+import { CourseProgress, CourseShortInfo, CourseType } from "../types/state";
 
 
 export const getUserName = (state: Pick <State, SliceHeadersNamespace.User>): string => state[SliceHeadersNamespace.User].name;
@@ -9,6 +9,9 @@ export const getUserSurname = (state: Pick <State, SliceHeadersNamespace.User>):
 export const getUserMiddleName = (state: Pick <State, SliceHeadersNamespace.User>): string => state[SliceHeadersNamespace.User].middlename;
 export const getUserEmail = (state: Pick <State, SliceHeadersNamespace.User>): string => state[SliceHeadersNamespace.User].email;
 export const getUserInterests = (state: Pick <State, SliceHeadersNamespace.User>): string => state[SliceHeadersNamespace.User].interests;
+export const getUserId = (state: Pick <State, SliceHeadersNamespace.User>): number => state[SliceHeadersNamespace.User].userId;
+export const getUserProgress = (state: Pick <State, SliceHeadersNamespace.User>): CourseProgress[] => state[SliceHeadersNamespace.User].progress;
+export const isUserAuth = (state: Pick <State, SliceHeadersNamespace.User>): boolean => state[SliceHeadersNamespace.User].isAuth;
 
 export const getCourseDescription = (state: Pick <State, SliceHeadersNamespace.Course>): string[] => state[SliceHeadersNamespace.Course].descriptionList;
 export const getCourseDocuments = (state: Pick <State, SliceHeadersNamespace.Course>): string[] => state[SliceHeadersNamespace.Course].documentList;

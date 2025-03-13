@@ -1,10 +1,11 @@
 import { AxiosInstance } from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { saveToken, dropToken, getToken } from "../services/token";
-import { AppDispatch, CourseType, CourseList, State, User } from "../types/state";
+import { AppDispatch, CourseType, CourseList, State, User, CourseProgress } from "../types/state";
 import { APIRoute } from "../mocks/api-routes";
 import { AuthData } from "../types/auth-data";
 import { UserData } from "../types/user-data";
+import { useAppDispatch } from "../hooks";
 
 export const fetchCourseList = createAsyncThunk<CourseList, undefined, {
   dispatch: AppDispatch;
@@ -80,6 +81,30 @@ export const userUpdateInfo = createAsyncThunk<User, User,{
   'user/updateInfo',
   async({name,surname, middlename, interests, email, photoUrl }, {extra:api})=>{
     const {data} = await api.post<User>(APIRoute.UserInfo, {params:{name, surname, middlename, interests, email, photoUrl }});
+    return data;
+  }
+)
+
+export const getUserProgress = createAsyncThunk<CourseProgress[], number,{
+  dispatch: AppDispatch;
+  state:State;
+  extra:AxiosInstance;
+}>(
+  'user/progressInfo',
+  async(userId, {extra:api})=> {
+    const {data} = await api.get<CourseProgress[]>(`${APIRoute.Progress}/${userId}`);
+    return data;
+  }
+)
+
+export const getUserInfo = createAsyncThunk <User, string,{
+  dispatch:AppDispatch;
+  state:State;
+  extra:AxiosInstance;
+}>(
+  'user/getUserInfo',
+  async(userEmail, {extra:api})=>{
+    const {data} = await api.get<User>(`${APIRoute.UserInfo}/${userEmail}`);
     return data;
   }
 )

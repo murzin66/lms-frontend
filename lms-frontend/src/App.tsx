@@ -14,9 +14,8 @@ import Register from './components/Register/Register';
 import MockCources from './mocks/couses';
 import { MockProgress } from './mocks/couses';
 import MockProfile from './mocks/profile';
-import { useAppDispatch, useAppSelector } from './hooks';
-import { fetchCourseList } from './store/api-actions';
-import { getCourse, getCourseList } from './store/selectors';
+import { useAppSelector } from './hooks';
+import { getCourse, getCourseList, getUserProgress, isUserAuth } from './store/selectors';
 import { useEffect } from 'react';
 import NotFoundPage from './components/not-found-page/not-found-page';
 import LoadingPage from './components/loading-page/loading-page';
@@ -25,6 +24,10 @@ function App() {
 
   const courseList = useAppSelector(getCourseList);
   const course = useAppSelector(getCourse);
+  const progress = useAppSelector(getUserProgress);
+  const isAuth = useAppSelector(isUserAuth);
+  const authStatus = isAuth ? AuthorizationStatus.Auth : AuthorizationStatus.NoAuth;
+
   return (
     <Routes>
       <Route
@@ -38,19 +41,19 @@ function App() {
 
       <Route
       path={AppRoute.Course}
-      element = {<Course courseInfo = {course} isAuth = {true} isEnrolled = {true}/>}/>
+      element = {<Course courseInfo = {course} isAuth = {isAuth} isEnrolled = {true}/>}/>
 
       <Route
       path = {AppRoute.Progress}
       element = {
-        <PrivateRoute authorizationStatus = {AuthorizationStatus.Auth}>
-      <Progress courses={MockProgress}/>
+        <PrivateRoute authorizationStatus = {authStatus}>
+      <Progress courses={progress}/>
       </PrivateRoute>}/>
 
       <Route
       path = {AppRoute.Profile}
       element = {
-        <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+        <PrivateRoute authorizationStatus={authStatus}>
           <ProfilePage />
         </PrivateRoute>
       }/>
@@ -58,7 +61,7 @@ function App() {
       <Route
       path = {AppRoute.MyCourses}
       element = {
-        <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+        <PrivateRoute authorizationStatus={authStatus}>
           <MainPage Cources={courseList.slice(0,3)}/>
         </PrivateRoute>
       }

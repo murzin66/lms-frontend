@@ -54,16 +54,16 @@ export default MockCources;
 
 export const MockProgress = [
     {
-      name: "Основы Python",
-      progress: [80, 60, 90, 40],
+      CourseName: "Основы Python",
+      moduleProgress: [80, 60, 90, 40],
     },
     {
-      name: "Машинное обучение",
-      progress: [50, 30, 70, 20],
+        CourseName: "Машинное обучение",
+        moduleProgress: [50, 30, 70, 20],
     },
     {
-      name: "Веб-разработка",
-      progress: [90, 70, 80, 60],
+        CourseName: "Веб-разработка",
+        moduleProgress: [90, 70, 80, 60],
     },
   ];
 

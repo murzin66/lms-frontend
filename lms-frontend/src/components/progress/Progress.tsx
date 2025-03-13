@@ -2,24 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
 import Header from "../header/Header";
 import Footer from "../footer/footer";
+import { CourseProgress } from "../../types/state";
 
-// Определяем тип для данных курса
-type CourceProgress = {
-  name: string; // Название курса
-  progress: number[]; // Прогресс по модулям
-};
 
 // Пропсы компонента
 type ProgressProps = {
-  courses: CourceProgress[]; // Массив курсов
+  courses: CourseProgress[]; // Массив курсов
 };
 
 function Progress({ courses }: ProgressProps) {
-  const [selectedCourse, setSelectedCourse] = useState<CourceProgress>(courses[0]); // Выбранный курс
+  const [selectedCourse, setSelectedCourse] = useState<CourseProgress>(courses[0]); // Выбранный курс
   const [totalProgress, setTotalProgress] = useState<number>(0); // Общий прогресс
   const chartRef = useRef<HTMLCanvasElement | null>(null); // Ссылка на canvas
   const chartInstance = useRef<Chart | null>(null); // Экземпляр графика
-
   // Эффект для создания/обновления графика
   useEffect(() => {
     if (!chartRef.current) return;
@@ -35,7 +30,7 @@ function Progress({ courses }: ProgressProps) {
         datasets: [
           {
             label: "Прогресс (%)",
-            data: selectedCourse.progress, // Данные прогресса
+            data: selectedCourse.moduleProgress, // Данные прогресса
             backgroundColor: "#6200ea", // Цвет столбцов
           },
         ],
@@ -67,13 +62,13 @@ function Progress({ courses }: ProgressProps) {
     if (!chartInstance.current) return;
 
     // Обновляем данные графика
-    chartInstance.current.data.datasets[0].data = selectedCourse.progress;
+    chartInstance.current.data.datasets[0].data = selectedCourse.moduleProgress;
     chartInstance.current.update();
 
     // Рассчитываем средний прогресс
     const avgProgress =
-      selectedCourse.progress.reduce((a, b) => a + b, 0) /
-      selectedCourse.progress.length;
+      selectedCourse.moduleProgress.reduce((a, b) => a + b, 0) /
+      selectedCourse.moduleProgress.length;
 
     setTotalProgress(avgProgress);
   }
@@ -88,13 +83,15 @@ function Progress({ courses }: ProgressProps) {
           id="course-select"
           className="progress-select"
           onChange={(e) => {
-            const selected = courses.find((course) => course.name === e.target.value);
-            if (selected) setSelectedCourse(selected);
+            const selected = courses.find(
+              (course) => course.CourseName === e.target.value
+            );
+            selected && setSelectedCourse(selected);
           }}
         >
           {courses.map((course) => (
-            <option key={course.name} value={course.name}>
-              {course.name}
+            <option key={course.CourseName} value={course.CourseName}>
+              {course.CourseName}
             </option>
           ))}
         </select>
