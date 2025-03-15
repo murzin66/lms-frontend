@@ -1,29 +1,31 @@
 import Header from "../header/Header";
 import Footer from "../footer/footer";
+import { useAppSelector } from "../../hooks";
+import { getQuery, getSearchResults } from "../../store/selectors";
+import SearchResultCard from "../search-result-card/search-result-card";
 function SearchResults(){
+  const results = useAppSelector(getSearchResults);
+  const query = useAppSelector(getQuery);
+  console.log(query);
   return(
     <>
     <Header/>
     <main className="results-container">
-    <h1 className="results-header" style={{textAlign : "center"}}>Результаты поиска для "Python"</h1>
+    <h1 className="results-header" style={{textAlign : "center"}}>Результаты поиска для "{query}"</h1>
+      {results?.length ?
+          <div className="course-cards2">
 
-    <div className="course-cards2">
-      <div className="course-card2">
-        <h2 className="course-title">Основы Python</h2>
-        <p className="course-description">Изучите основы программирования на Python.</p>
-        <div className="course-meta">
-          <span className="course-hours">Трудоемкость: 20 часов</span>
-        </div>
-      </div>
 
-      <div className="course-card2">
-        <h2 className="course-title">Машинное обучение с Python</h2>
-        <p className="course-description">Погрузитесь в мир машинного обучения с использованием Python и библиотек.</p>
-        <div className="course-meta">
-          <span className="course-hours">Трудоемкость: 40 часов</span>
-        </div>
-      </div>
-    </div>
+      {(results.map((result) => (
+          <SearchResultCard {...result} key={result.id} />
+        ))
+
+
+      )} </div>
+      : (
+        <p className="no-results" style = {{textAlign : "center"}}>Ничего не найдено</p>
+      )}
+
     </main>
     <Footer/>
     </>

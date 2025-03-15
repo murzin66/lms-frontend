@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hooks";
 import { fetchCourseInfo } from "../../store/api-actions";
+import { useState } from "react";
 
 type CourseCardProps = {
   title: string;
@@ -13,11 +14,20 @@ type CourseCardProps = {
 function CourseCard({ title, description, stars, difficulty, id }: CourseCardProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [courseId, setCourseId] = useState<number>(0);
+
   const navigateToCourse = (event: React.MouseEvent<HTMLElement>) => {
-    dispatch(fetchCourseInfo(1));
+    dispatch(fetchCourseInfo(courseId));
     navigate(`/Course/${id}`);
   };
-
+  const handleMouseHover = (event:React.MouseEvent<HTMLElement>) =>{
+    event.preventDefault();
+    setCourseId(id);
+  };
+  const handleMouseLeave = (event:React.MouseEvent<HTMLElement>)=>{
+    event.preventDefault();
+    setCourseId(0);
+  }
   const StarRating = ({ stars }: { stars: number }) => {
     const maxStars = 5;
     const starArray = Array.from({ length: maxStars }, (_, index) => {
@@ -37,7 +47,7 @@ function CourseCard({ title, description, stars, difficulty, id }: CourseCardPro
 
   return (
     <div className="course-card">
-      <h2 className="course-title" onClick={navigateToCourse}>{title}</h2>
+      <h2 className="course-title" onClick={navigateToCourse} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseLeave}>{title}</h2>
       <p className="course-description">{description}</p>
       <div className="course-meta">
         <span className="course-hours">Трудоемкость: {difficulty} часов</span>

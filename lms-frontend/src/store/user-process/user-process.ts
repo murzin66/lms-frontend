@@ -13,7 +13,9 @@ const initialState:User = {
   photoUrl: "",
   progress: [],
   isUserDataLoading: false,
-  userId:0
+  userId:0,
+  recommendations: [],
+  enrolledCourses: []
 };
 
 export const userProcess = createSlice ({
@@ -67,6 +69,9 @@ export const userProcess = createSlice ({
       state.email = action.payload.email;
       state.middlename = action.payload.middlename;
       state.photoUrl = action.payload.photoUrl;
+      state.recommendations =action.payload.recommendations;
+      state.enrolledCourses = action.payload.enrolledCourses;
+
     })
     .addCase(getUserInfo.pending, (state)=> {
       state. isUserDataLoading = true;

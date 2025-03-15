@@ -521,6 +521,9 @@ iframe {
 .results-container {
   padding: 20px;
   background-color: #f4f4f9;
+  width: 100%; /* Добавлено */
+  max-width: 1400px; /* Добавлено */
+  margin: 0 auto; /* Центрирование */
 }
 .results-header {
   font-size: 24px;
@@ -528,20 +531,25 @@ iframe {
   color: #333;
 }
 .course-cards2 {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center; /* Выровнять по центру */
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  width: 100%;
+  margin: 20px 0;
 }
 
+/* Индивидуальная карточка */
 .course-card2 {
   background: #ffffff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 250px;
   text-align: center;
+  transition: transform 0.2s; /* Анимация при наведении */
+}
+
+.course-card2:hover {
+  transform: translateY(-5px);
 }
 .course-title {
   font-size: 18px;
@@ -556,4 +564,7 @@ iframe {
 .course-meta {
   font-size: 14px;
   color: #888;
+}
+.no-results{
+  margin-top: 20px;
 }

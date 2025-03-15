@@ -15,7 +15,7 @@ import MockCources from './mocks/couses';
 import { MockProgress } from './mocks/couses';
 import MockProfile from './mocks/profile';
 import { useAppSelector } from './hooks';
-import { getCourse, getCourseList, getUserProgress, isUserAuth } from './store/selectors';
+import { getCourse, getCourseList, getEnrolledCourses, getUserProgress, isDataLoading, isUserAuth } from './store/selectors';
 import { useEffect } from 'react';
 import NotFoundPage from './components/not-found-page/not-found-page';
 import LoadingPage from './components/loading-page/loading-page';
@@ -27,7 +27,14 @@ function App() {
   const progress = useAppSelector(getUserProgress);
   const isAuth = useAppSelector(isUserAuth);
   const authStatus = isAuth ? AuthorizationStatus.Auth : AuthorizationStatus.NoAuth;
+  const enrolledCourses = useAppSelector(getEnrolledCourses);
 
+  const isLoading = useAppSelector(isDataLoading);
+  if (isLoading) {
+    return (
+      <LoadingPage />
+    );
+  }
   return (
     <Routes>
       <Route
@@ -62,7 +69,7 @@ function App() {
       path = {AppRoute.MyCourses}
       element = {
         <PrivateRoute authorizationStatus={authStatus}>
-          <MainPage Cources={courseList.slice(0,3)}/>
+          <MainPage Cources={courseList.filter((course)=> enrolledCourses.includes(course.id))}/>
         </PrivateRoute>
       }
       />

@@ -6,6 +6,9 @@ import WebPhoto from "../../markup/image/Web.svg";
 import PythonPhoto from "../../markup/image/Python-logo.png";
 import  {CourseType}  from "../../types/state";
 import CourseModule from "../course-modules/course-modules";
+import { useAppSelector } from "../../hooks";
+import { getRecommendations } from "../../store/selectors";
+import RecommendedCards from "../recommendedCards/recommendedCards";
 
 type CourseProps={
   isAuth : boolean;
@@ -13,6 +16,7 @@ type CourseProps={
   courseInfo:CourseType;
 };
 function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
+  const recomendations = useAppSelector(getRecommendations);
   return(
     <>
       <Header/>
@@ -40,27 +44,12 @@ function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
 
       <aside className="course-sidebar">
           <h2>Рекомендуемые курсы</h2>
-
-          <div className="course-recommended-course">
-              <img src={NNPhoto} alt="Машинное обучение"/>
-              <h3>Машинное обучение</h3>
-              <p>Изучите основы машинного обучения, работу с нейросетями и анализ данных.</p>
-              <a href="#">Подробнее</a>
-          </div>
-
-          <div className="course-recommended-course">
-              <img src={WebPhoto} alt="Веб-разработка"/>
-              <h3>Веб-разработка</h3>
-              <p>Научитесь создавать современные веб-приложения с HTML, CSS и JavaScript.</p>
-              <a href="#">Подробнее</a>
-          </div>
-
-          <div className="course-recommended-course">
-              <img src={MLPhoto} alt="Анализ данных"/>
-              <h3>Анализ данных</h3>
-              <p>Освойте основы анализа данных с помощью Python и Pandas.</p>
-              <a href="#">Подробнее</a>
-          </div>
+            {recomendations?.length > 0  ?
+              recomendations.map((rec) => (
+                <RecommendedCards {...rec} key = {rec.courseId} />
+              ))
+            : null
+            }
       </aside>
   </div>
 </main>

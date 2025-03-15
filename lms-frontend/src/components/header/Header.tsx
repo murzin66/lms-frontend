@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../markup/image/logo.svg";
 import profile from "../../markup/image/profile2.svg";
 import { useAppDispatch } from "../../hooks";
-import { getUserProgress } from "../../store/api-actions";
+import { getSearchResult, getUserProgress } from "../../store/api-actions";
+import { useRef } from "react";
+import { changeQueryAction } from "../../store/search-process/search-process";
 function Header(){
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
+  const searchRef = useRef<HTMLInputElement>(null);;
   const profileButtonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     navigate("/profile");
@@ -15,6 +17,10 @@ function Header(){
   const handleSearch = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     navigate("/search");
+    const search = searchRef.current;
+    if (search){
+      dispatch(getSearchResult(search?.value));
+      dispatch(changeQueryAction(search?.value ));}
   }
   function handleProgressClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void {
     dispatch(getUserProgress(1));
@@ -31,7 +37,7 @@ function Header(){
       <Link to = "/progress" className="nav-link" aria-label="Просмотреть прогресс" onClick={handleProgressClick}>Прогресс</Link>
     </nav>
     <div className="search-container">
-      <input type="text" className="search-input" placeholder="Поиск курсов..."/>
+      <input type="text" className="search-input" ref = {searchRef} placeholder="Поиск курсов..."/>
       <button className="search-button" aria-label="Поиск" onClick={handleSearch}>Поиск</button>
     </div>
 

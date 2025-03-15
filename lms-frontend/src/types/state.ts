@@ -6,6 +6,13 @@ export type CourseShortInfo = {
     rating: number;
     difficulty: number;
     id:number;
+    modules: string[];
+}
+
+export type SearchResults = {
+    results: CourseShortInfo[];
+    isResultsLoading:boolean;
+    query: string;
 }
 
 export type CourseType = {
@@ -15,6 +22,13 @@ export type CourseType = {
     videoList: string [],
     courseId:number,
     isCourseDataLoading: boolean,
+    shortInfo: CourseShortInfo,
+}
+export type Recommendation =  {
+    title: string,
+    imageUrl: string,
+    description: string,
+    courseId:number
 }
 
 export type User = {
@@ -28,6 +42,8 @@ export type User = {
     photoUrl: string,
     progress: CourseProgress[],
     isUserDataLoading:boolean,
+    recommendations:Recommendation[],
+    enrolledCourses: number[]
 }
 
 export type CourseProgress = {

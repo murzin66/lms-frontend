@@ -1,3 +1,4 @@
+import { CourseShortInfo } from "../types/state";
 
 export type Cource = {
     title: string;
@@ -66,4 +67,13 @@ export const MockProgress = [
         moduleProgress: [90, 70, 80, 60],
     },
   ];
+
+export const emptyShortInfo:CourseShortInfo = {
+    title: "",
+    description:"",
+    id:0,
+    rating:0,
+    difficulty:0,
+    modules:[]
+}
 

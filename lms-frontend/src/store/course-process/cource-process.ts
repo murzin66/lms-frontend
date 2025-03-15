@@ -2,6 +2,7 @@ import { createSlice} from "@reduxjs/toolkit";
 import { SliceHeadersNamespace } from "../../mocks/sliceHeaders";
 import {CourseType} from "../../types/state";
 import { fetchCourseInfo } from "../api-actions";
+import { emptyShortInfo } from "../../mocks/couses";
 
 const initialState: CourseType = {
   courseName:"",
@@ -10,6 +11,7 @@ const initialState: CourseType = {
   videoList: [],
   courseId:0,
   isCourseDataLoading: false,
+  shortInfo: emptyShortInfo,
 }
 
 export const courseProcess = createSlice({

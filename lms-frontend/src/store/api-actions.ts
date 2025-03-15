@@ -1,7 +1,7 @@
 import { AxiosInstance } from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { saveToken, dropToken, getToken } from "../services/token";
-import { AppDispatch, CourseType, CourseList, State, User, CourseProgress } from "../types/state";
+import { AppDispatch, CourseType, CourseList, State, User, CourseProgress, CourseShortInfo, SearchResults } from "../types/state";
 import { APIRoute } from "../mocks/api-routes";
 import { AuthData } from "../types/auth-data";
 import { UserData } from "../types/user-data";
@@ -25,7 +25,7 @@ export const checkAuthAction = createAsyncThunk<string, string, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'User/checkAuth',
+  'user/checkAuth',
   async (token, {extra: api}) => {
     const {data:{name}} = await api.get<User>(APIRoute.Login,{params:{'X-Token':token}});
     return name;
@@ -53,9 +53,7 @@ export const fetchCourseInfo = createAsyncThunk<CourseType, number, {
 }>(
   'Course/fetchCourse',
   async (id, {extra: api}) => {
-    console.log("fetch course");
     const {data} = await api.get<CourseType>(`${APIRoute.Course}/${id}`);
-    console.log(data);
     return data;
   },
 );
@@ -105,6 +103,18 @@ export const getUserInfo = createAsyncThunk <User, string,{
   'user/getUserInfo',
   async(userEmail, {extra:api})=>{
     const {data} = await api.get<User>(`${APIRoute.UserInfo}/${userEmail}`);
+    return data;
+  }
+)
+
+export const getSearchResult = createAsyncThunk <CourseShortInfo[],string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'search/getSearchResult',
+  async(query, {extra:api}) => {
+    const {data} = await api.get <CourseShortInfo[]>(`${APIRoute.Search}/${query}`);
     return data;
   }
 )
