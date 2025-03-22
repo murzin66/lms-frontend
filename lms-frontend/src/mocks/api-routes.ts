@@ -4,6 +4,7 @@ export enum APIRoute {
   UserInfo = '/user',
   Progress = '/progress',
   Login = '/login',
+  CheckAuth = '/auth',
   Logout = '/logout',
   Search = '/search'
 }

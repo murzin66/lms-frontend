@@ -5,20 +5,22 @@ import './index.css';
 import App from './App';
 import { store } from './store/index';
 import { Provider } from 'react-redux';
-import { fetchCourseList, getUserInfo, getUserProgress } from './store/api-actions';
+import { checkAuthAction, fetchCourseList, getUserInfo, getUserProgress } from './store/api-actions';
+import { getToken } from './services/token';
+import browserHistory from './services/browser-history';
+import HistoryRouter from './components/history-router/history-router';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 store.dispatch(fetchCourseList());
-store.dispatch(getUserProgress(1));
-store.dispatch(getUserInfo("test@mail.ru"));
+store.dispatch(checkAuthAction(getToken()));
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <HistoryRouter history = {browserHistory}>
         <App />
-      </BrowserRouter>
+      </HistoryRouter>
     </Provider>
   </React.StrictMode>
 );

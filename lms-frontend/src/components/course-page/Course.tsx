@@ -6,9 +6,13 @@ import WebPhoto from "../../markup/image/Web.svg";
 import PythonPhoto from "../../markup/image/Python-logo.png";
 import  {CourseType}  from "../../types/state";
 import CourseModule from "../course-modules/course-modules";
-import { useAppSelector } from "../../hooks";
-import { getRecommendations } from "../../store/selectors";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { getRecommendations, getUserEmail } from "../../store/selectors";
 import RecommendedCards from "../recommendedCards/recommendedCards";
+import React from "react";
+import { redirectToRoute } from "../../store/redirect-action";
+import { AppRoute } from "../../mocks/routes";
+import { enrollAction } from "../../store/api-actions";
 
 type CourseProps={
   isAuth : boolean;
@@ -17,6 +21,23 @@ type CourseProps={
 };
 function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
   const recomendations = useAppSelector(getRecommendations);
+  const email = useAppSelector(getUserEmail);
+  const dispatch = useAppDispatch();
+  const handleCourseEnroll = (event: React.MouseEvent) =>{
+    event.preventDefault();
+    if (!isAuth){
+      dispatch(redirectToRoute(AppRoute.Login));
+    }
+    else{
+      const enrollInfo = {
+        courseId: courseInfo.courseId,
+        email: email,
+      }
+      console.log(courseInfo.courseId)
+      dispatch(enrollAction(enrollInfo));
+    }
+
+  }
   return(
     <>
       <Header/>
@@ -76,7 +97,7 @@ function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
               </ul>
             </div>
             <div className="button-container">
-              <button className="enroll-button" aria-label="Записаться на курс">Записаться</button>
+              <button className="enroll-button" aria-label="Записаться на курс" onClick={handleCourseEnroll}>Записаться</button>
             </div>
           </div>
         </main>}

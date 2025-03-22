@@ -43,7 +43,8 @@ export type User = {
     progress: CourseProgress[],
     isUserDataLoading:boolean,
     recommendations:Recommendation[],
-    enrolledCourses: number[]
+    enrolledCourses: number[],
+    password:string
 }
 
 export type CourseProgress = {

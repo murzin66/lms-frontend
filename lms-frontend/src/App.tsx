@@ -28,7 +28,6 @@ function App() {
   const isAuth = useAppSelector(isUserAuth);
   const authStatus = isAuth ? AuthorizationStatus.Auth : AuthorizationStatus.NoAuth;
   const enrolledCourses = useAppSelector(getEnrolledCourses);
-
   const isLoading = useAppSelector(isDataLoading);
   if (isLoading) {
     return (
@@ -48,7 +47,7 @@ function App() {
 
       <Route
       path={AppRoute.Course}
-      element = {<Course courseInfo = {course} isAuth = {isAuth} isEnrolled = {true}/>}/>
+      element = {<Course courseInfo = {course} isAuth = {isAuth} isEnrolled = {enrolledCourses.includes(course.courseId)}/>}/>
 
       <Route
       path = {AppRoute.Progress}

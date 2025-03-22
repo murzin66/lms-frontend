@@ -1,7 +1,8 @@
 import { createSlice} from "@reduxjs/toolkit";
 import { SliceHeadersNamespace } from "../../mocks/sliceHeaders";
 import {User} from "../../types/state";
-import { getUserInfo, getUserProgress, userUpdateInfo } from "../api-actions";
+import { checkAuthAction, enrollAction, getUserInfo, getUserProgress, loginAction, logoutAction, userUpdateInfo } from "../api-actions";
+import { AuthorizationStatus } from "../../mocks/routes";
 
 const initialState:User = {
   isAuth : false,
@@ -15,7 +16,8 @@ const initialState:User = {
   isUserDataLoading: false,
   userId:0,
   recommendations: [],
-  enrolledCourses: []
+  enrolledCourses: [],
+  password:""
 };
 
 export const userProcess = createSlice ({
@@ -84,5 +86,35 @@ export const userProcess = createSlice ({
       state.middlename = "";
       state.interests = "";
       state.photoUrl = "";
+    })
+
+    .addCase(checkAuthAction.fulfilled, (state)=> {
+      state.isAuth = true;
+      state.isUserDataLoading = false;
+    })
+    .addCase(checkAuthAction.pending, (state) => {
+      state.isUserDataLoading = true;
+    })
+    .addCase(checkAuthAction.rejected, (state)=> {
+      state.isAuth = false;
+      state.isUserDataLoading = false;
+    })
+
+    .addCase(logoutAction.fulfilled, (state) => {
+      state.isAuth = false;
+      state.isUserDataLoading = false;
+    })
+    .addCase(logoutAction.pending, (state) => {
+      state.isUserDataLoading =  true;
+    })
+    .addCase(enrollAction.fulfilled, (state, action)=>{
+      state.isUserDataLoading = false;
+      state.enrolledCourses = action.payload;
+    })
+    .addCase(enrollAction.pending, (state)=> {
+      state.isUserDataLoading = true;
+    })
+    .addCase(enrollAction.rejected, (state)=> {
+      state.isUserDataLoading = false;
     })
 }});
