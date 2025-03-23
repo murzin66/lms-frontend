@@ -1,5 +1,5 @@
-import Footer from "../footer/footer";
-import Header from "../header/Header";
+import Footer from "../../components/footer/footer";
+import Header from "../../components/header/Header";
 import profilePhoto from "../../markup/image/profile-photo.jpg";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getUserEmail, getUserId, getUserInterests, getUserMiddleName, getUserName, getUserSurname } from "../../store/selectors";

@@ -1,24 +1,18 @@
-import React from 'react';
 import {Route, Routes} from "react-router-dom";
-import './App.css';
-import MainPage from './components/main-page/MainPage';
-import "./markup/styles.css";
-import { AppRoute, AuthorizationStatus } from './mocks/routes';
-import SearchResults from './components/search-results/search-results';
-import Course from './components/course-page/Course';
-import Progress from './components/progress/Progress';
-import ProfilePage from './components/profile-page/ProfilePage';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import LoginPage from './components/login-page/LoginPage';
-import Register from './components/Register/Register';
-import MockCources from './mocks/couses';
-import { MockProgress } from './mocks/couses';
-import MockProfile from './mocks/profile';
-import { useAppSelector } from './hooks';
-import { getCourse, getCourseList, getEnrolledCourses, getUserProgress, isDataLoading, isUserAuth } from './store/selectors';
-import { useEffect } from 'react';
-import NotFoundPage from './components/not-found-page/not-found-page';
-import LoadingPage from './components/loading-page/loading-page';
+import MainPage from '../../pages/main-page/main-page';
+import { AppRoute, AuthorizationStatus } from '../../mocks/routes';
+import SearchResults from '../../pages/search-results-page/search-results-page';
+import Course from '../../pages/course-page/course-page';
+import Progress from '../../pages/progress-page/progress-page';
+import ProfilePage from '../../pages/profile-page/profile-page';
+import PrivateRoute from '../private-route/private-route';
+import LoginPage from '../../pages/login-page/login-page';
+import Register from '../register/register';
+import { useAppSelector } from '../../hooks';
+import { getCourse, getCourseList, getEnrolledCourses, getUserProgress, isDataLoading, isUserAuth } from '../../store/selectors';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import LoadingPage from '../../pages/loading-page/loading-page';
+import "../../markup/styles.css";
 
 function App() {
 

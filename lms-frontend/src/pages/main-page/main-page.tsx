@@ -1,6 +1,6 @@
-import Header from "../header/Header";
-import Footer from "../footer/footer";
-import CourseCard from "../course-card/CourseCard";
+import Header from "../../components/header/Header";
+import Footer from "../../components/footer/footer";
+import CourseCard from "../../components/course-card/course-card";
 import { CourseShortInfo } from "../../types/state";
 
 type CourceCardProps = {

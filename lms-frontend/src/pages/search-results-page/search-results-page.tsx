@@ -1,8 +1,8 @@
-import Header from "../header/Header";
-import Footer from "../footer/footer";
+import Header from "../../components/header/Header";
+import Footer from "../../components/footer/footer";
 import { useAppSelector } from "../../hooks";
 import { getQuery, getSearchResults } from "../../store/selectors";
-import SearchResultCard from "../search-result-card/search-result-card";
+import SearchResultCard from "../../components/search-result-card/search-result-card";
 function SearchResults(){
   const results = useAppSelector(getSearchResults);
   const query = useAppSelector(getQuery);

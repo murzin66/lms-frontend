@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
-import Header from "../header/Header";
-import Footer from "../footer/footer";
+import Header from "../../components/header/Header";
+import Footer from "../../components/footer/footer";
 import { CourseProgress } from "../../types/state";
 
 

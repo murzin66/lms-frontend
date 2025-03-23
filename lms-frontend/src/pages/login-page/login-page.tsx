@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import Footer from "../footer/footer";
-import Header from "../header/Header";
+import Footer from "../../components/footer/footer";
+import Header from "../../components/header/Header";
 import { useAppDispatch } from "../../hooks";
 import { loginAction } from "../../store/api-actions";
 import { useRef } from "react";

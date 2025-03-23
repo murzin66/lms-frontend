@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
-import App from './App';
+import App from './components/app/App';
 import { store } from './store/index';
 import { Provider } from 'react-redux';
 import { checkAuthAction, fetchCourseList, getUserInfo, getUserProgress } from './store/api-actions';

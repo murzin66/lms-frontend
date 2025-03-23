@@ -1,14 +1,11 @@
-import Footer from "../footer/footer";
-import Header from "../header/Header";
-import MLPhoto from "../../markup/image/ML.png";
-import NNPhoto from "../../markup/image/NN.png";
-import WebPhoto from "../../markup/image/Web.svg";
+import Footer from "../../components/footer/footer";
+import Header from "../../components/header/Header";
 import PythonPhoto from "../../markup/image/Python-logo.png";
 import  {CourseType}  from "../../types/state";
-import CourseModule from "../course-modules/course-modules";
+import CourseModule from "../../components/course-modules/course-modules";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getRecommendations, getUserEmail } from "../../store/selectors";
-import RecommendedCards from "../recommendedCards/recommendedCards";
+import RecommendedCards from "../../components/recommended-cards/recommended-cards";
 import React from "react";
 import { redirectToRoute } from "../../store/redirect-action";
 import { AppRoute } from "../../mocks/routes";
