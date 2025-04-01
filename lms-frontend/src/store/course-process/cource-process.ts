@@ -12,6 +12,7 @@ const initialState: CourseType = {
   courseId:0,
   isCourseDataLoading: false,
   shortInfo: emptyShortInfo,
+  courseTag: ""
 }
 
 export const courseProcess = createSlice({
@@ -27,6 +28,7 @@ export const courseProcess = createSlice({
       state.videoList = action.payload.videoList;
       state.courseId = action.payload.courseId;
       state.courseName = action.payload.courseName;
+      state.courseTag = action.payload.courseTag;
     })
     .addCase(fetchCourseInfo.pending,(state) => {
       state. isCourseDataLoading = true;

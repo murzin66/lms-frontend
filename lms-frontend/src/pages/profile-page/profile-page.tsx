@@ -54,7 +54,8 @@ function ProfilePage() {
       isUserDataLoading: false,
       recommendations: [],
       enrolledCourses: [],
-      password: ''
+      password: '',
+      recommendationTag: ''
     };
 
     dispatch(userUpdateInfo(newUserData));

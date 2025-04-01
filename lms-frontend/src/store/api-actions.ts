@@ -59,14 +59,28 @@ export const registerAction = createAsyncThunk<void, AuthData, {
   extra: AxiosInstance;
 }>(
   'user/register',
-  async ({login: email, password}, {dispatch, extra: api}) => {
-    const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
+  async ({email, password, interests, name, surname, middlename}, {dispatch, extra: api}) => {
+    const userData = {
+      email,
+      password,
+      interests,
+      name,
+      surname,
+      middlename
+    };
+    const {data} = await api.post<UserData>(APIRoute.Register, userData, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    console.log(data);
     saveToken(data.token);
     dispatch(checkAuthAction(getToken()));
-    dispatch(getUserProgress(data.id));
     dispatch(getUserInfo(data.email));
+    dispatch(redirectToRoute(AppRoute.Profile));
   },
 );
+
 
 export const fetchCourseInfo = createAsyncThunk<CourseType, number, {
   dispatch: AppDispatch;

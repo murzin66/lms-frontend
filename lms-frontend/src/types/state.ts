@@ -7,6 +7,7 @@ export type CourseShortInfo = {
     difficulty: number;
     id:number;
     modules: string[];
+    courseTag: string;
 }
 
 export type SearchResults = {
@@ -23,6 +24,7 @@ export type CourseType = {
     courseId:number,
     isCourseDataLoading: boolean,
     shortInfo: CourseShortInfo,
+    courseTag : string
 }
 export type Recommendation =  {
     title: string,
@@ -44,7 +46,8 @@ export type User = {
     isUserDataLoading:boolean,
     recommendations:Recommendation[],
     enrolledCourses: number[],
-    password:string
+    password:string,
+    recommendationTag: string
 }
 
 export type CourseProgress = {

@@ -31,11 +31,14 @@ function Header(){
     <div className="logo">
       <Link to ="/"><img src = {logo} alt = "логотип" height="60px"/></Link>
     </div>
+
+    <ul className = "ul_nav">
     <nav className="nav">
-      <Link to = "/" className="nav-link" aria-label="Открыть список обучающих курсов">Банк курсов</Link>
-      <Link to ="/mycourses" className="nav-link" aria-label="Открыть мои курсы">Мои курсы</Link>
-      <Link to = "/progress" className="nav-link" aria-label="Просмотреть прогресс" onClick={handleProgressClick}>Прогресс</Link>
+      <li><Link to = "/" className="nav-link" aria-label="Открыть список обучающих курсов">Банк курсов</Link></li>
+      <li><Link to ="/mycourses" className="nav-link" aria-label="Открыть мои курсы">Мои курсы</Link></li>
+      <li><Link to = "/progress" className="nav-link" aria-label="Просмотреть прогресс" onClick={handleProgressClick}>Прогресс</Link></li>
     </nav>
+    </ul>
     <div className="search-container">
       <input type="text" className="search-input" ref = {searchRef} placeholder="Поиск курсов..."/>
       <button className="search-button" aria-label="Поиск" onClick={handleSearch}>Поиск</button>
