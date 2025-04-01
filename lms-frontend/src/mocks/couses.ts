@@ -75,6 +75,7 @@ export const emptyShortInfo:CourseShortInfo = {
     rating:0,
     difficulty:0,
     modules:[],
-    courseTag: ""
+    courseTag: "",
+    imageUrl:""
 }
 

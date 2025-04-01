@@ -4,7 +4,7 @@ import PythonPhoto from "../../markup/image/Python-logo.png";
 import  {CourseType}  from "../../types/state";
 import CourseModule from "../../components/course-modules/course-modules";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getRecommendations, getUserEmail } from "../../store/selectors";
+import { getCourseList, getRecommendations, getUserEmail, getUserTag } from "../../store/selectors";
 import RecommendedCards from "../../components/recommended-cards/recommended-cards";
 import React from "react";
 import { redirectToRoute } from "../../store/redirect-action";
@@ -17,7 +17,20 @@ type CourseProps={
   courseInfo:CourseType;
 };
 function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
-  const recomendations = useAppSelector(getRecommendations);
+
+  const userTags = useAppSelector(getUserTag);
+
+  const mostFrequentTag = userTags.reduce((acc, tag) => {
+    acc[tag] = (acc[tag] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const topTag = Object.entries(mostFrequentTag)
+    .sort((a, b) => b[1] - a[1])[0]?.[0];
+
+  const recomendations = useAppSelector(getCourseList).filter(course=>course.courseTag === topTag).slice(0,3);
+  console.log(recomendations);
+
   const email = useAppSelector(getUserEmail);
   const dispatch = useAppDispatch();
   const handleCourseEnroll = (event: React.MouseEvent) =>{
@@ -29,8 +42,8 @@ function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
       const enrollInfo = {
         courseId: courseInfo.courseId,
         email: email,
+        courseTag: courseInfo.courseTag
       }
-      console.log(courseInfo.courseId)
       dispatch(enrollAction(enrollInfo));
     }
 
@@ -64,7 +77,7 @@ function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
           <h2>Рекомендуемые курсы</h2>
             {recomendations?.length > 0  ?
               recomendations.map((rec) => (
-                <RecommendedCards {...rec} key = {rec.courseId} />
+                <RecommendedCards {...rec} key = {rec.id} />
               ))
             : null
             }
@@ -109,7 +122,7 @@ function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
       <h2>Рекомендуемые курсы</h2>
       {recomendations?.length > 0  ?
         recomendations.map((rec) => (
-          <RecommendedCards {...rec} key = {rec.courseId} />
+          <RecommendedCards {...rec} key = {rec.id} />
         ))
         : null
       }

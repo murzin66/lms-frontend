@@ -9,8 +9,8 @@ function RecommendedCards(recommended:Recommendation){
   const navigate = useNavigate();
   const handleRecommendedCourseClick = (event: React.MouseEvent<HTMLAnchorElement>)=>{
     event.preventDefault();
-    dispatch(fetchCourseInfo(recommended.courseId));
-    navigate(`/Course/${recommended.courseId}`);
+    dispatch(fetchCourseInfo(recommended.id));
+    navigate(`/Course/${recommended.id}`);
   };
   return (
     <div className="course-recommended-course">

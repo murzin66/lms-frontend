@@ -158,6 +158,7 @@ export const getSearchResult = createAsyncThunk <CourseShortInfo[],string, {
 export type EnrollActionType = {
   courseId: number;
   email: string;
+  courseTag: string;
 }
 export const enrollAction = createAsyncThunk <number[],EnrollActionType,{
   dispatch:AppDispatch;
@@ -165,8 +166,8 @@ export const enrollAction = createAsyncThunk <number[],EnrollActionType,{
   extra:AxiosInstance;
 }>(
   'course/enrollAction',
-  async({courseId, email},{extra:api})=>{
-    const {data:{enrolledCourses}} = await api.post<User>(APIRoute.Course,{courseId, email});
+  async({courseId, email, courseTag},{extra:api})=>{
+    const {data:{enrolledCourses}} = await api.post<User>(APIRoute.Course,{courseId, email, courseTag});
     return enrolledCourses;
   }
 )

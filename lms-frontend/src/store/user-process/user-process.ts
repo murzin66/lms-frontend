@@ -18,7 +18,7 @@ const initialState:User = {
   recommendations: [],
   enrolledCourses: [],
   password:"",
-  recommendationTag: ""
+  recommendationTags: []
 };
 
 export const userProcess = createSlice ({
@@ -36,7 +36,7 @@ export const userProcess = createSlice ({
       state.interests = action.payload.interests;
       state.photoUrl = action.payload.photoUrl;
       state.userId = action.payload.userId;
-      state.recommendationTag = action.payload.recommendationTag;
+      state.recommendationTags = action.payload.recommendationTags;
     })
     .addCase(userUpdateInfo.pending,(state)=>{
       state.isUserDataLoading = true;
@@ -75,7 +75,7 @@ export const userProcess = createSlice ({
       state.photoUrl = action.payload.photoUrl;
       state.recommendations =action.payload.recommendations;
       state.enrolledCourses = action.payload.enrolledCourses;
-      state.recommendationTag = action.payload.recommendationTag;
+      state.recommendationTags = action.payload.recommendationTags;
     })
     .addCase(getUserInfo.pending, (state)=> {
       state. isUserDataLoading = true;

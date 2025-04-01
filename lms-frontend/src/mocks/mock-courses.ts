@@ -16,7 +16,8 @@ const mockCourses: CourseType[] = [
         "CSS Fundamentals",
         "JavaScript Basics"
       ],
-      courseTag: "Web"
+      courseTag: "Web",
+      imageUrl:""
     },
     courseTag:"Web",
     courseName: "",
@@ -38,7 +39,9 @@ const mockCourses: CourseType[] = [
         "Functional Programming",
         "Performance Optimization"
       ],
-      courseTag: "Web"
+      courseTag: "Web",
+      imageUrl:""
+
     },
     courseName: "",
     descriptionList: [],

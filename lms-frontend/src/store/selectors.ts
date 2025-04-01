@@ -29,3 +29,5 @@ const isCourseDataLoading = (state: Pick <State, SliceHeadersNamespace.Course>):
 const isCourseListDataLoading = (state:Pick <State, SliceHeadersNamespace.CourseList>):boolean => state[SliceHeadersNamespace.CourseList].isCourseListDataLoading;
 const isResultsLoading = (state:Pick<State, SliceHeadersNamespace.SearchResults>): boolean => state[SliceHeadersNamespace.SearchResults].isResultsLoading;
 export const isDataLoading = isUserDataLoading || isCourseDataLoading || isCourseListDataLoading || isResultsLoading;
+
+export const getUserTag = (state:Pick<State, SliceHeadersNamespace.User>): string[] => state[SliceHeadersNamespace.User].recommendationTags;

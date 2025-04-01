@@ -8,6 +8,7 @@ export type CourseShortInfo = {
     id:number;
     modules: string[];
     courseTag: string;
+    imageUrl: string;
 }
 
 export type SearchResults = {
@@ -30,7 +31,7 @@ export type Recommendation =  {
     title: string,
     imageUrl: string,
     description: string,
-    courseId:number
+    id:number
 }
 
 export type User = {
@@ -47,7 +48,7 @@ export type User = {
     recommendations:Recommendation[],
     enrolledCourses: number[],
     password:string,
-    recommendationTag: string
+    recommendationTags: string []
 }
 
 export type CourseProgress = {
