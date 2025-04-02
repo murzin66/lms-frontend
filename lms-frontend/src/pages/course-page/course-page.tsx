@@ -92,7 +92,7 @@ function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
     <div className = "competenceHeader">
       {courseInfo.courseName}
     </div>
-      <img src={PythonPhoto} alt="Изображение курса" className="course-image"/>
+      <img src={courseInfo.shortInfo.imageUrl} alt="Изображение курса" className="course-image"/>
       <p className="course-description">
         {courseInfo.longDescription}
       </p>
@@ -115,15 +115,7 @@ function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
       </div>
     </div>
 
-    <aside className="course-sidebar">
-      <h2>Рекомендуемые курсы</h2>
-      {recomendations?.length > 0  ?
-        recomendations.map((rec) => (
-          <RecommendedCards {...rec} key = {rec.id} />
-        ))
-        : null
-      }
-    </aside>
+
   </div>
 </main>
 }

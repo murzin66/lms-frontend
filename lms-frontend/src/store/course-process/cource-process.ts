@@ -33,6 +33,7 @@ export const courseProcess = createSlice({
       state.courseTag = action.payload.courseTag;
       state.longDescription = action.payload.longDescription;
       state.competences = action.payload.competences;
+      state.shortInfo = action.payload.shortInfo;
     })
     .addCase(fetchCourseInfo.pending,(state) => {
       state. isCourseDataLoading = true;
