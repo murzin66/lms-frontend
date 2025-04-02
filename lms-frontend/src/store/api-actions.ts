@@ -143,14 +143,14 @@ export const getUserInfo = createAsyncThunk <User, string,{
   }
 )
 
-export const getSearchResult = createAsyncThunk <CourseShortInfo[],string, {
+export const getSearchResult = createAsyncThunk <CourseType[],string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'search/getSearchResult',
   async(query, {extra:api}) => {
-    const {data} = await api.get <CourseShortInfo[]>(`${APIRoute.Search}/${query}`);
+    const {data} = await api.get <CourseType[]>(`${APIRoute.Search}/${query}`);
     return data;
   }
 )

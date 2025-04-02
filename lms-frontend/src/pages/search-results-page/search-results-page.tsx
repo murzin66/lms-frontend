@@ -17,7 +17,7 @@ function SearchResults(){
 
 
       {(results.map((result) => (
-          <SearchResultCard {...result} key={result.id} />
+          <SearchResultCard {...result} key={result.courseId} />
         ))
 
 

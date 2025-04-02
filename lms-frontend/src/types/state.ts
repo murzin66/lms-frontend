@@ -12,7 +12,7 @@ export type CourseShortInfo = {
 }
 
 export type SearchResults = {
-    results: CourseShortInfo[];
+    results: CourseType[];
     isResultsLoading:boolean;
     query: string;
 }
@@ -25,7 +25,9 @@ export type CourseType = {
     courseId:number,
     isCourseDataLoading: boolean,
     shortInfo: CourseShortInfo,
-    courseTag : string
+    courseTag : string,
+    longDescription: string,
+    competences: string[]
 }
 export type Recommendation =  {
     title: string,

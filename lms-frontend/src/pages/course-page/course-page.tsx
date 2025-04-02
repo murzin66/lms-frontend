@@ -90,26 +90,23 @@ function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
   <div className="course-container1">
     <div className="course-content">
     <div className = "competenceHeader">
-      Основы программирования на Python
+      {courseInfo.courseName}
     </div>
       <img src={PythonPhoto} alt="Изображение курса" className="course-image"/>
       <p className="course-description">
-        Этот курс предназначен для начинающих разработчиков, желающих освоить один из самых популярных языков программирования — Python.
-        Вы изучите основы синтаксиса, структуры данных, работу с файлами и базами данных, а также основы объектно-ориентированного программирования.
-        В ходе обучения будут рассмотрены реальные примеры использования Python в веб-разработке, анализе данных и автоматизации задач.
-        После прохождения курса студенты смогут разрабатывать собственные проекты, работать с API и создавать автоматизированные решения.
+        {courseInfo.longDescription}
       </p>
       <div className="competencies">
         <div className = "competenceHeader">
           Компетенции после курса
         </div>
+
         <ul>
-          <li>Понимание синтаксиса и структур данных в Python</li>
-          <li>Работа с файлами и базами данных</li>
-          <li>Создание программ с использованием объектно-ориентированного подхода</li>
-          <li>Основы работы с API и автоматизация процессов</li>
-          <li>Разработка простых веб-приложений на Python</li>
+          {courseInfo.competences.map((i) => (
+            <li key={i}>{i}</li>
+          ))}
         </ul>
+
       </div>
       <div className="button-container">
         <button className="enroll-button" aria-label="Записаться на курс" onClick={handleCourseEnroll}>

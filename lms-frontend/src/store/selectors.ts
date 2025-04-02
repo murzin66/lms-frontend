@@ -22,7 +22,7 @@ export const getCourse = (state:Pick <State, SliceHeadersNamespace.Course>):Cour
 
 export const getCourseList= (state: Pick <State, SliceHeadersNamespace.CourseList>): CourseShortInfo[] => state[SliceHeadersNamespace.CourseList].courseList;
 
-export const getSearchResults = (state: Pick <State, SliceHeadersNamespace.SearchResults>): CourseShortInfo[] => state[SliceHeadersNamespace.SearchResults].results;
+export const getSearchResults = (state: Pick <State, SliceHeadersNamespace.SearchResults>): CourseType[] => state[SliceHeadersNamespace.SearchResults].results;
 export const getQuery = (state: Pick <State, SliceHeadersNamespace.SearchResults>): string => state[SliceHeadersNamespace.SearchResults].query;
 const isUserDataLoading = (state: Pick <State, SliceHeadersNamespace.User>):boolean => state[SliceHeadersNamespace.User].isUserDataLoading;
 const isCourseDataLoading = (state: Pick <State, SliceHeadersNamespace.Course>):boolean => state [SliceHeadersNamespace.Course].isCourseDataLoading;

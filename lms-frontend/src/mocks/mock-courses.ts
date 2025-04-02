@@ -21,7 +21,9 @@ const mockCourses: CourseType[] = [
     },
     courseTag:"Web",
     courseName: "",
-    descriptionList: []
+    descriptionList: [],
+    longDescription:"",
+    competences:[]
   },
   {
     courseId: 2,
@@ -45,6 +47,8 @@ const mockCourses: CourseType[] = [
     },
     courseName: "",
     descriptionList: [],
-    courseTag: "Web"
+    courseTag: "Web",
+    longDescription: "",
+    competences: []
   }
 ];
