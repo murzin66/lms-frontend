@@ -1,24 +1,21 @@
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks";
-import { CourseShortInfo, CourseType } from "../../types/state";
-import { HtmlHTMLAttributes } from "react";
-import { fetchCourseInfo } from "../../store/api-actions";
+import {  CourseType } from "../../types/state";
 
-function SearchResultCard(shortInfo:CourseType){
+export type SearchResultCardProps = {
+  shortInfo: CourseType;
+  handleSearchResultClickFun: (courseNum:number)=> void;
+}
+function SearchResultCard({shortInfo, handleSearchResultClickFun}:SearchResultCardProps){
 
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+
   const handleSearchResultClick = (event:React.MouseEvent<HTMLElement>)=>{
     event.preventDefault();
-    console.log(shortInfo.courseId);
-    dispatch(fetchCourseInfo(shortInfo.courseId));
-    navigate(`/Course/${shortInfo.courseId}`);
+    handleSearchResultClickFun(shortInfo.courseId);
   }
   return(
-      <div className="course-card2">
-      <h2 className="course-title" onClick={handleSearchResultClick}>{shortInfo.courseName}</h2>
+      <div className="course-card2" data-testid = "course-card-test">
+      <h2 className="course-title" onClick={handleSearchResultClick} data-testid = "course-title">{shortInfo.courseName}</h2>
       <p className="course-description">{shortInfo.shortInfo.description}</p>
-      <div className="course-meta">
+      <div className="course-meta" data-testid = "course-meta">
         <span className="course-hours">Трудоемкость: {shortInfo.shortInfo.difficulty} часов</span>
       </div>
       </div>

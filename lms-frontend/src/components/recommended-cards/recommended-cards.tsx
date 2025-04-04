@@ -1,19 +1,18 @@
-import { MouseEventHandler } from "react";
 import { Recommendation } from "../../types/state";
-import { useAppDispatch } from "../../hooks";
-import { fetchCourseInfo } from "../../store/api-actions";
-import { useNavigate } from "react-router-dom";
 
-function RecommendedCards(recommended:Recommendation){
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+
+export type RecommendedCardProps = {
+  recommended: Recommendation;
+  handleRecommendedCourseClickFun: (courseNum: number) => void;
+}
+function RecommendedCards({recommended, handleRecommendedCourseClickFun}:RecommendedCardProps){
+
   const handleRecommendedCourseClick = (event: React.MouseEvent<HTMLAnchorElement>)=>{
     event.preventDefault();
-    dispatch(fetchCourseInfo(recommended.id));
-    navigate(`/Course/${recommended.id}`);
+    handleRecommendedCourseClickFun(recommended.id);
   };
   return (
-    <div className="course-recommended-course">
+    <div className="course-recommended-course" data-testid = "recommended-card">
         <img src={recommended.imageUrl} alt={recommended.title}/>
         <h3>{recommended.title}</h3>
         <p>{recommended.description}</p>

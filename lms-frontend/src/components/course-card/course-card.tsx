@@ -9,16 +9,17 @@ type CourseCardProps = {
   stars: number;
   difficulty: number;
   id: number;
+  navigateToCourseFun: (courseNum:number) => void;
 };
 
-function CourseCard({ title, description, stars, difficulty, id }: CourseCardProps) {
+function CourseCard({ title, description, stars, difficulty, id, navigateToCourseFun }: CourseCardProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [courseId, setCourseId] = useState<number>(0);
 
   const navigateToCourse = (event: React.MouseEvent<HTMLElement>) => {
-    dispatch(fetchCourseInfo(courseId));
-    navigate(`/Course/${id}`);
+    navigateToCourseFun(courseId);
+
   };
   const handleMouseHover = (event:React.MouseEvent<HTMLElement>) =>{
     event.preventDefault();
@@ -35,7 +36,7 @@ function CourseCard({ title, description, stars, difficulty, id }: CourseCardPro
     });
 
     return (
-      <span className="course-difficulty">
+      <span className="course-difficulty" data-testid = "stars">
         {starArray.map((star, index) => (
           <span key={index} className="star">
             {star}
@@ -47,9 +48,9 @@ function CourseCard({ title, description, stars, difficulty, id }: CourseCardPro
 
   return (
     <div className="course-card">
-      <h2 className="course-title" onClick={navigateToCourse} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseLeave}>{title}</h2>
+      <h2 className="course-title" onClick={navigateToCourse} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseLeave} data-testid = "course-title">{title}</h2>
       <p className="course-description">{description}</p>
-      <div className="course-meta">
+      <div className="course-meta" data-testid = "hours">
         <span className="course-hours">Трудоемкость: {difficulty} часов</span>
         <StarRating stars={stars} />
       </div>

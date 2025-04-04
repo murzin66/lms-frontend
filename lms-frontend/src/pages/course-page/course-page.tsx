@@ -17,8 +17,9 @@ type CourseProps={
   profileButtonHandler: () =>void;
   handleSearchFunction: (search:string) => void;
   handleProgressClick: ()=> void;
+  handleRecommendedCourseClickFun: (courseNum: number) => void;
 };
-function Course({isAuth, isEnrolled, courseInfo, profileButtonHandler, handleProgressClick, handleSearchFunction} : CourseProps){
+function Course({isAuth, isEnrolled, courseInfo, profileButtonHandler, handleProgressClick, handleSearchFunction, handleRecommendedCourseClickFun} : CourseProps){
 
   const userTags = useAppSelector(getUserTag);
 
@@ -79,7 +80,7 @@ function Course({isAuth, isEnrolled, courseInfo, profileButtonHandler, handlePro
           <h2>Рекомендуемые курсы</h2>
             {recomendations?.length > 0  ?
               recomendations.map((rec) => (
-                <RecommendedCards {...rec} key = {rec.id} />
+                <RecommendedCards recommended={rec} handleRecommendedCourseClickFun = {handleRecommendedCourseClickFun} key = {rec.id} />
               ))
             : null
             }

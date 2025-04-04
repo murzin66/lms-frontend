@@ -1,13 +1,18 @@
-import { useNavigate } from "react-router-dom";
 import Footer from "../footer/footer";
-import Header, { HeaderProps } from "../header/Header";
-import { useAppDispatch } from "../../hooks";
-import { registerAction } from "../../store/api-actions";
+import Header from "../header/Header";
 import { useRef } from "react";
+import { AuthData } from "../../types/auth-data";
 
-function Register ({profileButtonHandler, handleSearchFunction, handleProgressClick}:HeaderProps) {
-    const navigate = useNavigate();
-    const dispatch = useAppDispatch();
+export type RegisterProps = {
+  profileButtonHandler: ()=> void;
+  handleSearchFunction: (search: string)=> void;
+  handleProgressClick: ()=> void;
+  handleToggleClick: (route:string)=> void;
+  handleRegisterClick: (authData: AuthData)=> void;
+}
+
+function Register ({profileButtonHandler, handleSearchFunction, handleProgressClick, handleToggleClick, handleRegisterClick}:RegisterProps) {
+
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const nameRef = useRef<HTMLInputElement>(null);
@@ -18,7 +23,7 @@ function Register ({profileButtonHandler, handleSearchFunction, handleProgressCl
 
     const toggleForm = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        navigate("/login");
+        handleToggleClick("/login")
       }
     const handleRegister = (event:React.MouseEvent<HTMLButtonElement>)=> {
       event.preventDefault();
@@ -39,13 +44,13 @@ function Register ({profileButtonHandler, handleSearchFunction, handleProgressCl
           'middlename' : middlename,
           'interests' : interests
         }
-        dispatch(registerAction(registerInfo));
+        handleRegisterClick(registerInfo);
       }
     }
     return (
         <>
         <Header handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction} profileButtonHandler={profileButtonHandler}/>
-        <div className="auth-container" id="auth-container">
+        <div className="auth-container" id="auth-container" data-testid = "auth-container">
         <h1 id="form-title">Регистрация</h1>
         <form className="auth-form" id="auth-form">
         <label htmlFor="surname">Фамилия</label>

@@ -1,9 +1,16 @@
-import Header, { HeaderProps } from "../../components/header/Header";
+import Header from "../../components/header/Header";
 import Footer from "../../components/footer/footer";
 import { useAppSelector } from "../../hooks";
 import { getQuery, getSearchResults } from "../../store/selectors";
 import SearchResultCard from "../../components/search-result-card/search-result-card";
-function SearchResults({profileButtonHandler, handleSearchFunction, handleProgressClick}:HeaderProps){
+
+export type SearchPageProps = {
+  profileButtonHandler: ()=> void;
+  handleSearchFunction: (search:string)=> void;
+  handleProgressClick: () => void;
+  handleSearchResultClickFun:(courseNum:number)=>void ;
+}
+function SearchResults({profileButtonHandler, handleSearchFunction, handleProgressClick, handleSearchResultClickFun}:SearchPageProps){
   const results = useAppSelector(getSearchResults);
   const query = useAppSelector(getQuery);
   return(
@@ -16,7 +23,7 @@ function SearchResults({profileButtonHandler, handleSearchFunction, handleProgre
 
 
       {(results.map((result) => (
-          <SearchResultCard {...result} key={result.courseId} />
+          <SearchResultCard shortInfo={result} handleSearchResultClickFun={handleSearchResultClickFun} key={result.courseId} />
         ))
 
 

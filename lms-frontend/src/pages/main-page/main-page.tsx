@@ -9,8 +9,9 @@ type CourceCardProps = {
   profileButtonHandler: ()=> void;
   handleSearchFunction: (search:string) => void;
   handleProgressClick: ()=> void;
+  navigateToCourseFun: (courseNum: number) => void;
 }
-function MainPage({Cources, profileButtonHandler, handleSearchFunction, handleProgressClick} : CourceCardProps){
+function MainPage({Cources, profileButtonHandler, handleSearchFunction, handleProgressClick, navigateToCourseFun} : CourceCardProps){
   return(
     <>
       <Header  profileButtonHandler= {profileButtonHandler } handleSearchFunction = {handleSearchFunction} handleProgressClick={handleProgressClick}/>
@@ -18,7 +19,7 @@ function MainPage({Cources, profileButtonHandler, handleSearchFunction, handlePr
             <h1 className="main-title">Банк курсов</h1>
             <div className="course-cards">
               {Cources.map((course) => (
-              <CourseCard key = {course.id} title={course.title} stars={course.rating} id = {course.id} description={course.description} difficulty={course.difficulty}/>
+              <CourseCard key = {course.id} title={course.title} stars={course.rating} id = {course.id} description={course.description} difficulty={course.difficulty} navigateToCourseFun={navigateToCourseFun}/>
               ))}
           </div>
         </main>

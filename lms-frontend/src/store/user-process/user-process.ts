@@ -71,6 +71,7 @@ export const userProcess = createSlice ({
       state.interests = action.payload.interests;
       state.surname = action.payload.surname;
       state.email = action.payload.email;
+      state.userId = action.payload.userId;
       state.middlename = action.payload.middlename;
       state.photoUrl = action.payload.photoUrl;
       state.recommendations =action.payload.recommendations;
