@@ -1,15 +1,14 @@
-import Header from "../../components/header/Header";
+import Header, { HeaderProps } from "../../components/header/Header";
 import Footer from "../../components/footer/footer";
 import { useAppSelector } from "../../hooks";
 import { getQuery, getSearchResults } from "../../store/selectors";
 import SearchResultCard from "../../components/search-result-card/search-result-card";
-function SearchResults(){
+function SearchResults({profileButtonHandler, handleSearchFunction, handleProgressClick}:HeaderProps){
   const results = useAppSelector(getSearchResults);
   const query = useAppSelector(getQuery);
-  console.log(query);
   return(
     <>
-    <Header/>
+    <Header profileButtonHandler={profileButtonHandler} handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction}/>
     <main className="results-container">
     <h1 className="results-header" style={{textAlign : "center"}}>Результаты поиска для "{query}"</h1>
       {results?.length ?

@@ -1,0 +1,17 @@
+import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { createAPI } from '../services/api';
+import { State } from '../types/state';
+import { mockCourse, mockCourseList, mockSearch, mockUser } from '../mocks/mock-store';
+
+export type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createAPI>, Action>;
+
+export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
+
+export const makeFakeStore = (initialState?: Partial<State>): State => ({
+  User: mockUser,
+  Course: mockCourse,
+  CourseList: mockCourseList,
+  SearchResults : mockSearch,
+  ...initialState ?? {},
+});

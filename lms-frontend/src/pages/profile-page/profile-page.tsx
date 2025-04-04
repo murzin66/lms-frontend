@@ -1,5 +1,5 @@
 import Footer from "../../components/footer/footer";
-import Header from "../../components/header/Header";
+import Header, { HeaderProps } from "../../components/header/Header";
 import profilePhoto from "../../markup/image/profile-photo.jpg";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getUserEmail, getUserId, getUserInterests, getUserMiddleName, getUserName, getUserSurname } from "../../store/selectors";
@@ -7,14 +7,8 @@ import { logoutAction, userUpdateInfo } from "../../store/api-actions";
 import { getToken } from "../../services/token";
 import { useRef, useState } from "react";
 
-type ProfileProps = {
-  name:string;
-  surname:string;
-  middlename:string;
-  email: string;
-  interests: string;
-}
-function ProfilePage() {
+
+function ProfilePage({profileButtonHandler, handleSearchFunction, handleProgressClick}:HeaderProps) {
   const userNameInit = useAppSelector(getUserName);
   const userSurnameInit = useAppSelector(getUserSurname);
   const userMiddlenameInit = useAppSelector(getUserMiddleName);
@@ -62,7 +56,7 @@ function ProfilePage() {
   };
   return (
     <>
-      <Header />
+      <Header profileButtonHandler = {profileButtonHandler} handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction}/>
       <div className="profile-info">
         <h1 style={{ textAlign: "center" }}>Профиль пользователя</h1>
         <div className="profile-card">

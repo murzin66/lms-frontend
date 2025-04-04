@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/footer";
-import Header from "../../components/header/Header";
+import Header, { HeaderProps } from "../../components/header/Header";
 import { useAppDispatch } from "../../hooks";
 import { loginAction } from "../../store/api-actions";
 import { useRef } from "react";
 import { redirectToRoute } from "../../store/redirect-action";
 import { AppRoute } from "../../mocks/routes";
 
-function LoginPage(){
+function LoginPage({profileButtonHandler, handleSearchFunction, handleProgressClick}:HeaderProps){
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const emailRef = useRef<HTMLInputElement>(null);
@@ -34,7 +34,7 @@ function LoginPage(){
     }
     return(
         <>
-            <Header/>
+            <Header profileButtonHandler={profileButtonHandler} handleSearchFunction = {handleSearchFunction} handleProgressClick={handleProgressClick}/>
                 <div className="auth-container" id="auth-container">
                 <h1 id="form-title">Авторизация</h1>
                 <form className="auth-form" id="auth-form">

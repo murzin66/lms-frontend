@@ -1,7 +1,7 @@
 import { createSlice} from "@reduxjs/toolkit";
 import { SliceHeadersNamespace } from "../../mocks/sliceHeaders";
 import {User} from "../../types/state";
-import { checkAuthAction, enrollAction, getUserInfo, getUserProgress, loginAction, logoutAction, userUpdateInfo } from "../api-actions";
+import { checkAuthAction, enrollAction, getUserInfo, getUserProgressAction, loginAction, logoutAction, userUpdateInfo } from "../api-actions";
 import { AuthorizationStatus } from "../../mocks/routes";
 
 const initialState:User = {
@@ -52,14 +52,14 @@ export const userProcess = createSlice ({
     })
 
 
-    .addCase(getUserProgress.fulfilled, (state, action) => {
+    .addCase(getUserProgressAction.fulfilled, (state, action) => {
       state.isUserDataLoading = false;
       state.progress = action.payload;
     })
-    .addCase(getUserProgress.pending, (state)=> {
+    .addCase(getUserProgressAction.pending, (state)=> {
       state.isUserDataLoading = true;
     })
-    .addCase(getUserProgress.rejected, (state)=> {
+    .addCase(getUserProgressAction.rejected, (state)=> {
       state.progress = [];
     })
 

@@ -48,7 +48,7 @@ export const loginAction = createAsyncThunk< void, loginType, {
     const { data } = await api.post<UserData>(APIRoute.Login, formData);
     saveToken(data.token);
     dispatch(getUserInfo(data.email));
-    dispatch(getUserProgress(data.id));
+    dispatch(getUserProgressAction(data.id));
     dispatch(redirectToRoute(AppRoute.Profile));
   },
 );
@@ -119,7 +119,7 @@ export const userUpdateInfo = createAsyncThunk<User, User,{
   }
 )
 
-export const getUserProgress = createAsyncThunk<CourseProgress[], number,{
+export const getUserProgressAction = createAsyncThunk<CourseProgress[], number,{
   dispatch: AppDispatch;
   state:State;
   extra:AxiosInstance;

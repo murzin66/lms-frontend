@@ -7,11 +7,11 @@ type CourseModuleProps = {
 function CourseModule({title, videoUrl, documentUrl}:CourseModuleProps){
   return (
     <div className="course-section">
-      <h2>{title}</h2>
+      <h2 data-testid = "module-title">{title}</h2>
       <ul className="course-materials-list">
-          <li><a href={documentUrl} className="course-download-link">Скачать материалы лекции {title}</a></li>
+          <li data-testid = "document"><a href={documentUrl} className="course-download-link">Скачать материалы лекции {title}</a></li>
       </ul>
-      <div className="course-video-container">
+      <div className="course-video-container" data-testid = "video-container">
           <iframe src={videoUrl} allowFullScreen></iframe>
       </div>
     </div>)

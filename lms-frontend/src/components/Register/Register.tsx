@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../footer/footer";
-import Header from "../header/Header";
+import Header, { HeaderProps } from "../header/Header";
 import { useAppDispatch } from "../../hooks";
 import { registerAction } from "../../store/api-actions";
 import { useRef } from "react";
 
-function Register () {
+function Register ({profileButtonHandler, handleSearchFunction, handleProgressClick}:HeaderProps) {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const emailRef = useRef<HTMLInputElement>(null);
@@ -44,7 +44,7 @@ function Register () {
     }
     return (
         <>
-        <Header/>
+        <Header handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction} profileButtonHandler={profileButtonHandler}/>
         <div className="auth-container" id="auth-container">
         <h1 id="form-title">Регистрация</h1>
         <form className="auth-form" id="auth-form">

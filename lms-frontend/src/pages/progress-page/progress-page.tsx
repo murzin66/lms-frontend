@@ -8,9 +8,12 @@ import { CourseProgress } from "../../types/state";
 // Пропсы компонента
 type ProgressProps = {
   courses: CourseProgress[]; // Массив курсов
+  profileButtonHandler: ()=> void;
+  handleSearchFunction: (search:string) => void;
+  handleProgressClick: ()=> void;
 };
 
-function Progress({ courses }: ProgressProps) {
+function Progress({ courses, profileButtonHandler, handleProgressClick, handleSearchFunction }: ProgressProps) {
   const [selectedCourse, setSelectedCourse] = useState<CourseProgress>(courses[0]); // Выбранный курс
   const [totalProgress, setTotalProgress] = useState<number>(0); // Общий прогресс
   const chartRef = useRef<HTMLCanvasElement | null>(null); // Ссылка на canvas
@@ -75,7 +78,7 @@ function Progress({ courses }: ProgressProps) {
 
   return (
     <>
-      <Header />
+      <Header profileButtonHandler={profileButtonHandler} handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction}/>
       <div className="progress-container">
         <h1>Прогресс обучения</h1>
         <label htmlFor="course-select">Выберите курс:</label>

@@ -1,6 +1,5 @@
 import Footer from "../../components/footer/footer";
 import Header from "../../components/header/Header";
-import PythonPhoto from "../../markup/image/Python-logo.png";
 import  {CourseType}  from "../../types/state";
 import CourseModule from "../../components/course-modules/course-modules";
 import { useAppDispatch, useAppSelector } from "../../hooks";
@@ -15,8 +14,11 @@ type CourseProps={
   isAuth : boolean;
   isEnrolled:boolean;
   courseInfo:CourseType;
+  profileButtonHandler: () =>void;
+  handleSearchFunction: (search:string) => void;
+  handleProgressClick: ()=> void;
 };
-function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
+function Course({isAuth, isEnrolled, courseInfo, profileButtonHandler, handleProgressClick, handleSearchFunction} : CourseProps){
 
   const userTags = useAppSelector(getUserTag);
 
@@ -50,7 +52,7 @@ function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
   }
   return(
     <>
-      <Header/>
+      <Header profileButtonHandler={profileButtonHandler} handleProgressClick = {handleProgressClick} handleSearchFunction={handleSearchFunction}/>
         {(isAuth && isEnrolled) ?
 
         <main className="main">
@@ -114,8 +116,6 @@ function Course({isAuth, isEnrolled, courseInfo} : CourseProps){
         </button>
       </div>
     </div>
-
-
   </div>
 </main>
 }
