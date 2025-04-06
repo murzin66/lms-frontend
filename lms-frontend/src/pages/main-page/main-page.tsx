@@ -17,7 +17,7 @@ function MainPage({Cources, profileButtonHandler, handleSearchFunction, handlePr
       <Header  profileButtonHandler= {profileButtonHandler } handleSearchFunction = {handleSearchFunction} handleProgressClick={handleProgressClick}/>
         <main className="main">
             <h1 className="main-title">Банк курсов</h1>
-            <div className="course-cards">
+            <div className="course-cards" data-testid = "course-card">
               {Cources.map((course) => (
               <CourseCard key = {course.id} title={course.title} stars={course.rating} id = {course.id} description={course.description} difficulty={course.difficulty} navigateToCourseFun={navigateToCourseFun}/>
               ))}

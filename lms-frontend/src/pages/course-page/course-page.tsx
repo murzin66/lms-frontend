@@ -2,13 +2,11 @@ import Footer from "../../components/footer/footer";
 import Header from "../../components/header/Header";
 import  {CourseType}  from "../../types/state";
 import CourseModule from "../../components/course-modules/course-modules";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getCourseList, getRecommendations, getUserEmail, getUserTag } from "../../store/selectors";
+import { useAppSelector } from "../../hooks";
+import { getCourseList,  getUserEmail, getUserTag } from "../../store/selectors";
 import RecommendedCards from "../../components/recommended-cards/recommended-cards";
 import React from "react";
-import { redirectToRoute } from "../../store/redirect-action";
-import { AppRoute } from "../../mocks/routes";
-import { enrollAction } from "../../store/api-actions";
+
 
 type CourseProps={
   isAuth : boolean;
@@ -18,8 +16,16 @@ type CourseProps={
   handleSearchFunction: (search:string) => void;
   handleProgressClick: ()=> void;
   handleRecommendedCourseClickFun: (courseNum: number) => void;
+  handleCourseEnrollFun: (
+    isAuth: boolean,
+    enrollInfo: {
+      courseId: number;
+      email: string;
+      courseTag: string;
+    }
+  ) => void
 };
-function Course({isAuth, isEnrolled, courseInfo, profileButtonHandler, handleProgressClick, handleSearchFunction, handleRecommendedCourseClickFun} : CourseProps){
+function Course({isAuth, isEnrolled, courseInfo, profileButtonHandler, handleProgressClick, handleSearchFunction, handleRecommendedCourseClickFun, handleCourseEnrollFun} : CourseProps){
 
   const userTags = useAppSelector(getUserTag);
 
@@ -32,23 +38,16 @@ function Course({isAuth, isEnrolled, courseInfo, profileButtonHandler, handlePro
     .sort((a, b) => b[1] - a[1])[0]?.[0];
 
   const recomendations = useAppSelector(getCourseList).filter(course=>course.courseTag === topTag).slice(0,3);
-  console.log(recomendations);
 
   const email = useAppSelector(getUserEmail);
-  const dispatch = useAppDispatch();
   const handleCourseEnroll = (event: React.MouseEvent) =>{
     event.preventDefault();
-    if (!isAuth){
-      dispatch(redirectToRoute(AppRoute.Login));
+    const enrollInfo = {
+      courseId: courseInfo.courseId,
+      email: email,
+      courseTag: courseInfo.courseTag
     }
-    else{
-      const enrollInfo = {
-        courseId: courseInfo.courseId,
-        email: email,
-        courseTag: courseInfo.courseTag
-      }
-      dispatch(enrollAction(enrollInfo));
-    }
+    handleCourseEnrollFun(isAuth, enrollInfo);
 
   }
   return(
@@ -57,9 +56,9 @@ function Course({isAuth, isEnrolled, courseInfo, profileButtonHandler, handlePro
         {(isAuth && isEnrolled) ?
 
         <main className="main">
-        <div className="course-container2">
+        <div className="course-container2" data-testid = "enrolled-course-container">
 
-          <div className="course-content">
+          <div className="course-content" data-testid = "enrolled-course-content" >
             <h1>{courseInfo.courseName}</h1>
               {
 
@@ -76,7 +75,7 @@ function Course({isAuth, isEnrolled, courseInfo, profileButtonHandler, handlePro
 
 
 
-      <aside className="course-sidebar">
+      <aside className="course-sidebar" data-testid = "recomendation-bar">
           <h2>Рекомендуемые курсы</h2>
             {recomendations?.length > 0  ?
               recomendations.map((rec) => (
@@ -99,7 +98,7 @@ function Course({isAuth, isEnrolled, courseInfo, profileButtonHandler, handlePro
       <p className="course-description">
         {courseInfo.longDescription}
       </p>
-      <div className="competencies">
+      <div className="competencies" data-testid = "competencies">
         <div className = "competenceHeader">
           Компетенции после курса
         </div>

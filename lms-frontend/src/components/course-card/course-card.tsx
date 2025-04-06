@@ -1,6 +1,3 @@
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks";
-import { fetchCourseInfo } from "../../store/api-actions";
 import { useState } from "react";
 
 type CourseCardProps = {
@@ -13,8 +10,7 @@ type CourseCardProps = {
 };
 
 function CourseCard({ title, description, stars, difficulty, id, navigateToCourseFun }: CourseCardProps) {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+
   const [courseId, setCourseId] = useState<number>(0);
 
   const navigateToCourse = (event: React.MouseEvent<HTMLElement>) => {

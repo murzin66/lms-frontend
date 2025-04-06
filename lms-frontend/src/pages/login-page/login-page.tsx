@@ -1,21 +1,31 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/footer";
-import Header, { HeaderProps } from "../../components/header/Header";
-import { useAppDispatch } from "../../hooks";
-import { loginAction } from "../../store/api-actions";
+import Header from "../../components/header/Header";
 import { useRef } from "react";
-import { redirectToRoute } from "../../store/redirect-action";
-import { AppRoute } from "../../mocks/routes";
 
-function LoginPage({profileButtonHandler, handleSearchFunction, handleProgressClick}:HeaderProps){
+
+export type LoginPageProps = {
+    profileButtonHandler: ()=> void;
+    handleSearchFunction: (search:string)=> void;
+    handleProgressClick: ()=> void;
+    handleLoginClick: (
+        loginInfo : {
+            email: string,
+            password: string
+        }
+    ) => void,
+    handleToggle: (route: string)=> void;
+};
+function LoginPage({profileButtonHandler, handleSearchFunction, handleProgressClick, handleLoginClick, handleToggle}:LoginPageProps){
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
 
 
     const toggleForm = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
+        handleToggle("/register");
+
         navigate("/register");
       }
     const handleLogin = (event:React.MouseEvent<HTMLButtonElement>) => {
@@ -28,16 +38,15 @@ function LoginPage({profileButtonHandler, handleSearchFunction, handleProgressCl
                 "email": email,
                 "password":password
             }
-            dispatch(loginAction(loginInfo));}
-            dispatch(redirectToRoute(AppRoute.Profile));
-
+            handleLoginClick(loginInfo);
+        }
     }
     return(
         <>
             <Header profileButtonHandler={profileButtonHandler} handleSearchFunction = {handleSearchFunction} handleProgressClick={handleProgressClick}/>
                 <div className="auth-container" id="auth-container">
                 <h1 id="form-title">Авторизация</h1>
-                <form className="auth-form" id="auth-form">
+                <form className="auth-form" id="auth-form" data-testid = "auth-form">
                     <label htmlFor="login">Логин</label>
                     <input type="text" id="login" name="login"  ref = {emailRef} required/>
 

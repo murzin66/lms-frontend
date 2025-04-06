@@ -13,9 +13,12 @@ import { getCourse, getCourseList, getEnrolledCourses, getUserId, getUserProgres
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import LoadingPage from '../../pages/loading-page/loading-page';
 import "../../markup/styles.css";
-import { fetchCourseInfo, getSearchResult, getUserProgressAction, registerAction } from "../../store/api-actions";
+import { enrollAction, fetchCourseInfo, getSearchResult, getUserProgressAction, loginAction, logoutAction, registerAction, userUpdateInfo } from "../../store/api-actions";
 import { changeQueryAction } from "../../store/search-process/search-process";
 import { AuthData } from "../../types/auth-data";
+import { redirectToRoute } from "../../store/redirect-action";
+import { getToken } from "../../services/token";
+import { User } from "../../types/state";
 
 function App() {
 
@@ -55,6 +58,31 @@ function App() {
     navigate(route);
   }
 
+  const handleLoginClick= (loginInfo: {email: string, password:string})=>{
+    dispatch(loginAction(loginInfo));
+    dispatch(redirectToRoute(AppRoute.Profile));
+  }
+  const handleLogoutAction = ()=>{
+    dispatch(logoutAction(getToken()));
+  }
+  const handleUserDataChange = (newUserData: User) => {
+    dispatch(userUpdateInfo(newUserData));
+  }
+  const handleCourseEnrollFun = (
+    isAuth: boolean,
+    enrollInfo: {
+      courseId: number;
+      email: string;
+      courseTag: string;
+  }) =>{
+    if (!isAuth){
+      dispatch(redirectToRoute(AppRoute.Login));
+    }
+    else{
+      dispatch(enrollAction(enrollInfo));
+    }
+
+  }
   if (isLoading) {
     return (
       <LoadingPage />
@@ -72,21 +100,41 @@ function App() {
       />
 
       <Route
-      path={AppRoute.Course}
-      element = {<Course courseInfo = {course} isAuth = {isAuth} isEnrolled = {enrolledCourses.includes(course.courseId)} profileButtonHandler={profileButtonHandler} handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction} handleRecommendedCourseClickFun={navigateToCourseFun}/>}/>
+        path={AppRoute.Course}
+        element = {<Course
+          courseInfo = {course}
+          isAuth = {isAuth}
+          isEnrolled = {enrolledCourses.includes(course.courseId)}
+          profileButtonHandler={profileButtonHandler}
+          handleProgressClick={handleProgressClick}
+          handleSearchFunction={handleSearchFunction}
+          handleRecommendedCourseClickFun={navigateToCourseFun}
+          handleCourseEnrollFun={handleCourseEnrollFun}
+      />}/>
 
       <Route
       path = {AppRoute.Progress}
       element = {
         <PrivateRoute authorizationStatus = {authStatus}>
-      <Progress courses={progress} profileButtonHandler= {profileButtonHandler } handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction}/>
+
+      <Progress
+        courses={progress}
+        profileButtonHandler = {profileButtonHandler }
+        handleProgressClick={handleProgressClick}
+        handleSearchFunction={handleSearchFunction}/>
       </PrivateRoute>}/>
 
       <Route
       path = {AppRoute.Profile}
       element = {
         <PrivateRoute authorizationStatus={authStatus}>
-          <ProfilePage profileButtonHandler={profileButtonHandler} handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction}/>
+          <ProfilePage
+            profileButtonHandler={profileButtonHandler}
+            handleProgressClick={handleProgressClick}
+            handleSearchFunction={handleSearchFunction}
+            handleLogoutAction = {handleLogoutAction}
+            handleUserDataChangeFunction={handleUserDataChange}
+            />
         </PrivateRoute>
       }/>
 
@@ -94,27 +142,45 @@ function App() {
       path = {AppRoute.MyCourses}
       element = {
         <PrivateRoute authorizationStatus={authStatus}>
-          <MainPage Cources={courseList.filter((course)=> enrolledCourses.includes(course.id))} profileButtonHandler={profileButtonHandler} handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction} navigateToCourseFun={navigateToCourseFun}/>
+          <MainPage
+            Cources={courseList.filter((course)=> enrolledCourses.includes(course.id))}
+            profileButtonHandler={profileButtonHandler}
+            handleProgressClick={handleProgressClick}
+            handleSearchFunction={handleSearchFunction}
+            navigateToCourseFun={navigateToCourseFun}/>
         </PrivateRoute>
       }
       />
       <Route
       path = {AppRoute.Login}
       element = {
-        <LoginPage profileButtonHandler={profileButtonHandler} handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction}/>
+        <LoginPage
+          profileButtonHandler={profileButtonHandler}
+          handleProgressClick={handleProgressClick}
+          handleSearchFunction={handleSearchFunction}
+          handleToggle={handleToggleClick}
+          handleLoginClick = {handleLoginClick}/>
       }
       />
 
       <Route
       path = {AppRoute.Register}
       element = {
-        <Register profileButtonHandler={profileButtonHandler} handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction} handleRegisterClick = {handleRegisterClick} handleToggleClick= {handleToggleClick}/>
+        <Register
+          profileButtonHandler={profileButtonHandler}
+          handleProgressClick={handleProgressClick}
+          handleSearchFunction={handleSearchFunction}
+          handleRegisterClick = {handleRegisterClick}
+          handleToggleClick= {handleToggleClick}/>
       }/>
 
       <Route
       path='*'
       element = {
-        <NotFoundPage profileButtonHandler={profileButtonHandler} handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction}/>
+        <NotFoundPage
+          profileButtonHandler={profileButtonHandler}
+          handleProgressClick={handleProgressClick}
+          handleSearchFunction={handleSearchFunction}/>
       }
         />
     </Routes>

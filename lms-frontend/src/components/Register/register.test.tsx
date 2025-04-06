@@ -67,11 +67,11 @@ describe('Component: Register', () => {
 
 
     await userEvent.type(emailField, 'test@mail.com');
-    await userEvent.type (surnameField, faker.string.sample());
-    await userEvent.type (nameField, faker.string.sample());
-    await userEvent.type (midnameField, faker.string.sample());
-    await userEvent.type (passwordField, faker.string.sample());
-    await userEvent.type (interestsField, faker.string.sample());
+    await userEvent.type (surnameField, 'test');
+    await userEvent.type (nameField, 'test');
+    await userEvent.type (midnameField, 'test');
+    await userEvent.type (passwordField, 'test');
+    await userEvent.type (interestsField, 'test');
     await userEvent.click(registerButton);
 
     expect (registerButton).toBeInTheDocument();

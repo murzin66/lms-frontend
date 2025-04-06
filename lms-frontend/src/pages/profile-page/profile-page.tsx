@@ -1,14 +1,19 @@
 import Footer from "../../components/footer/footer";
-import Header, { HeaderProps } from "../../components/header/Header";
+import Header from "../../components/header/Header";
 import profilePhoto from "../../markup/image/profile-photo.jpg";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppSelector } from "../../hooks";
 import { getUserEmail, getUserId, getUserInterests, getUserMiddleName, getUserName, getUserSurname } from "../../store/selectors";
-import { logoutAction, userUpdateInfo } from "../../store/api-actions";
-import { getToken } from "../../services/token";
-import { useRef, useState } from "react";
+import {  useState } from "react";
+import { User } from "../../types/state";
 
-
-function ProfilePage({profileButtonHandler, handleSearchFunction, handleProgressClick}:HeaderProps) {
+export type ProfilePageProps = {
+  profileButtonHandler: ()=>void,
+  handleSearchFunction: (search:string)=> void,
+  handleProgressClick: ()=> void,
+  handleUserDataChangeFunction: (data: User)=> void,
+  handleLogoutAction: () => void
+}
+function ProfilePage({profileButtonHandler, handleSearchFunction, handleProgressClick, handleUserDataChangeFunction, handleLogoutAction}:ProfilePageProps) {
   const userNameInit = useAppSelector(getUserName);
   const userSurnameInit = useAppSelector(getUserSurname);
   const userMiddlenameInit = useAppSelector(getUserMiddleName);
@@ -26,10 +31,9 @@ function ProfilePage({profileButtonHandler, handleSearchFunction, handleProgress
 
   const [userInterests, setUserInterests] = useState<string>(userInterestsInit);
 
-  const dispatch = useAppDispatch();
   const handleLogout = (event:React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    dispatch(logoutAction(getToken()));
+    handleLogoutAction();
   }
 
   const handleUserDataChange = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -51,13 +55,12 @@ function ProfilePage({profileButtonHandler, handleSearchFunction, handleProgress
       password: '',
       recommendationTags: []
     };
-
-    dispatch(userUpdateInfo(newUserData));
+    handleUserDataChangeFunction(newUserData);
   };
   return (
     <>
       <Header profileButtonHandler = {profileButtonHandler} handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction}/>
-      <div className="profile-info">
+      <div className="profile-info" data-testid = "profile-form">
         <h1 style={{ textAlign: "center" }}>Профиль пользователя</h1>
         <div className="profile-card">
           <img src={profilePhoto} alt="Фото профиля" className="profile-photo" />
