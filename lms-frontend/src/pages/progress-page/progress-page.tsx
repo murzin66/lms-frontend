@@ -79,7 +79,7 @@ function Progress({ courses, profileButtonHandler, handleProgressClick, handleSe
   return (
     <>
       <Header profileButtonHandler={profileButtonHandler} handleProgressClick={handleProgressClick} handleSearchFunction={handleSearchFunction}/>
-      <div className="progress-container">
+      <div className="progress-container" data-testid = "progress-container">
         <h1>Прогресс обучения</h1>
         <label htmlFor="course-select">Выберите курс:</label>
         <select
@@ -99,7 +99,7 @@ function Progress({ courses, profileButtonHandler, handleProgressClick, handleSe
           ))}
         </select>
 
-        <div className="chart-container">
+        <div className="chart-container" data-testid = "chart-container">
           <canvas ref={chartRef}></canvas>
         </div>
 

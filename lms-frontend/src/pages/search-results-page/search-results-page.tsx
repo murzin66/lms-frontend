@@ -19,7 +19,7 @@ function SearchResults({profileButtonHandler, handleSearchFunction, handleProgre
     <main className="results-container">
     <h1 className="results-header" style={{textAlign : "center"}}>Результаты поиска для "{query}"</h1>
       {results?.length ?
-          <div className="course-cards2">
+          <div className="course-cards2" data-testid = "course-cards2">
 
 
       {(results.map((result) => (
