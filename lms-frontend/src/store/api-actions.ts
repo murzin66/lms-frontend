@@ -73,7 +73,6 @@ export const registerAction = createAsyncThunk<void, AuthData, {
         'Content-Type': 'application/json'
       }
     });
-    console.log(data);
     saveToken(data.token);
     dispatch(checkAuthAction(getToken()));
     dispatch(getUserInfo(data.email));
