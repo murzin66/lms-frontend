@@ -121,3 +121,5 @@ export const userProcess = createSlice ({
       state.isUserDataLoading = false;
     })
 }});
+
+export { userUpdateInfo, getUserProgressAction, getUserInfo, checkAuthAction, logoutAction, enrollAction };

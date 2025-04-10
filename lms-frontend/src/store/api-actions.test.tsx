@@ -292,6 +292,7 @@ describe('Async actions',()=>{
         const actions = extractActionsTypes(store.getActions());
         expect(actions).toEqual([
           enrollAction.pending.type,
+          getUserInfo.pending.type,
           enrollAction.fulfilled.type,
         ]);
       });

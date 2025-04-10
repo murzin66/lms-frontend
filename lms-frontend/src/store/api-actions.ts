@@ -165,8 +165,9 @@ export const enrollAction = createAsyncThunk <number[],EnrollActionType,{
   extra:AxiosInstance;
 }>(
   'course/enrollAction',
-  async({courseId, email, courseTag},{extra:api})=>{
+  async({courseId, email, courseTag},{dispatch, extra:api})=>{
     const {data:{enrolledCourses}} = await api.post<User>(APIRoute.Course,{courseId, email, courseTag});
+    dispatch(getUserInfo(email));
     return enrolledCourses;
   }
 )

@@ -47,3 +47,5 @@ export const courseProcess = createSlice({
       state.courseName = "";
     })
   }})
+
+export { fetchCourseInfo };

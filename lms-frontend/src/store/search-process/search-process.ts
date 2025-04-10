@@ -33,3 +33,5 @@ export const searchProcess = createSlice({
   }})
 
   export const {changeQueryAction} = searchProcess.actions;
+
+export { getSearchResult };

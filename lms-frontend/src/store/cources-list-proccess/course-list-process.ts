@@ -27,3 +27,5 @@ export const courseListProcess = createSlice({
         })
     },
 });
+export { fetchCourseList };
+
