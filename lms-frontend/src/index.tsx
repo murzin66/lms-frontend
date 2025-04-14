@@ -5,7 +5,7 @@ import './index.css';
 import App from './components/app/App';
 import { store } from './store/index';
 import { Provider } from 'react-redux';
-import { checkAuthAction, fetchCourseList, getUserInfo, getUserProgress } from './store/api-actions';
+import { checkAuthAction, fetchCourseList } from './store/api-actions';
 import { getToken } from './services/token';
 import browserHistory from './services/browser-history';
 import HistoryRouter from './components/history-router/history-router';
