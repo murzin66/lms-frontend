@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Register from './register_case';
+import Register from './register';
 import { withHistory, withStore } from '../../utils/mock-component';
 import { vi } from 'vitest';
 import { faker } from '@faker-js/faker';

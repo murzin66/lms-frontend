@@ -7,7 +7,7 @@ import Progress from '../../pages/progress-page/progress-page';
 import ProfilePage from '../../pages/profile-page/profile-page';
 import PrivateRoute from '../private-route/private-route';
 import LoginPage from '../../pages/login-page/login-page';
-import Register from '../register/register_case';
+import Register from '../register/register';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getCourse, getCourseList, getEnrolledCourses, getUserId, getUserProgress, isDataLoading, isUserAuth } from '../../store/selectors';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
