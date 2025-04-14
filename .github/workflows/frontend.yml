@@ -16,14 +16,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+        working-directory: ./lms-frontend
 
       - name: Install dependencies
         run: npm install
-        working-directory: ./lms-frontend
+
+      - name: Check working directory
+        run: pwd
 
       - name: Run tests
         run: npm test
-        working-directory: ./lms-frontend
 
 
   docker-build-and-push:
