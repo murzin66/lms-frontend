@@ -19,9 +19,12 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./lms-frontend
 
       - name: Run tests
         run: npm run test
+        working-directory: ./lms-frontend
+
 
   docker-build-and-push:
     needs: build-and-test
