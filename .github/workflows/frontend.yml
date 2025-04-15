@@ -21,13 +21,21 @@ jobs:
         run: npm install
         working-directory: ./lms-frontend
 
-      - name: Check working directory
-        run: pwd
-        working-directory: ./lms-frontend
-
       - name: Run tests
         run: npm test
         working-directory: ./lms-frontend
+
+      - name: Build project
+        run: npm run build
+        working-directory: ./lms-frontend
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -37,7 +45,6 @@ jobs:
           publish_branch: gh-pages
           commit_message: "🚀 Deploy frontend from GitHub Actions"
           force_orphan: true
-
 
   docker-build-and-push:
     needs: build-and-test
@@ -59,4 +66,3 @@ jobs:
           context: ./lms-frontend
           push: true
           tags: mikhailmurzin/lms-frontend:latest
-
