@@ -60,6 +60,7 @@ export const userProcess = createSlice ({
       state.isUserDataLoading = true;
     })
     .addCase(getUserProgressAction.rejected, (state)=> {
+      state.isUserDataLoading = false;
       state.progress = [];
     })
 
