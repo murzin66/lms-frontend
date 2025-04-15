@@ -29,6 +29,16 @@ jobs:
         run: npm test
         working-directory: ./lms-frontend
 
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./lms-frontend/dist
+          publish_branch: gh-pages
+          commit_message: "🚀 Deploy frontend from GitHub Actions"
+          force_orphan: true
+
+
   docker-build-and-push:
     needs: build-and-test
     runs-on: ubuntu-latest
