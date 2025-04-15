@@ -59,3 +59,4 @@ jobs:
           context: ./lms-frontend
           push: true
           tags: mikhailmurzin/lms-frontend:latest
+
