@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <base href="/">
+  <!-- Здесь теперь base должен указывать на /lms-frontend/ -->
+  <base href="/lms-frontend/">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
-  <link rel="stylesheet" href="css/main.css">
-  <script type="module" crossorigin src="/assets/index-43866580.js"></script>
-  <link rel="stylesheet" href="/assets/index-22c1138f.css">
+  <!-- Путь теперь правильный относительно базового адреса -->
+  <link rel="stylesheet" href="/lms-frontend/css/main.css">
+  <script type="module" crossorigin src="/lms-frontend/assets/index-9a932def.js"></script>
+  <link rel="stylesheet" href="/lms-frontend/assets/index-22c1138f.css">
 </head>
 
 <body>
@@ -27,6 +29,5 @@
   </div>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  
 </body>
 </html>
