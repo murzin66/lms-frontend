@@ -20,7 +20,7 @@ const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.FORBIDDEN]: true,
 };
 
-const BACKEND_URL = 'http://localhost:4343';
+const BACKEND_URL = 'https://user139205383-4xqumfgu.tunnel.vk-apps.com/';
 const REQUEST_TIMEOUT = 5000;
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
 
