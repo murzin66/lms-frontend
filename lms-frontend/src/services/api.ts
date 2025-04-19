@@ -20,7 +20,7 @@ const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.FORBIDDEN]: true,
 };
 
-const BACKEND_URL = 'http://188.124.38.170:4343';
+const BACKEND_URL = 'localhost:4343';
 const REQUEST_TIMEOUT = 5000;
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
 
